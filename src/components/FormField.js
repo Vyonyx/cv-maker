@@ -1,0 +1,53 @@
+import React, { Component } from 'react'
+
+export class FormField extends Component {
+    constructor(props) {
+        super(props)
+        this.populateFields = this.populateFields.bind(this)
+    }
+
+    populateFields() {
+        const {fields} = this.props.fields
+        return fields.map(field => {
+            return <InputField label={field.label} />
+        })
+    }
+
+  render() {
+    const {grid, formName, fields, history} = this.props
+    const cName = `form-field ${grid} ${formName}`
+    return (
+      <div className={cName}>
+        {fields.map((field, index) => <InputField key={index} label={field.label} value={field.value} gridArea={field.gridArea || ''} />)}
+        {history && history.map((item, index) => <History details={item} />)}
+      </div>
+    )
+  }
+}
+
+class InputField extends Component {
+    render() {
+      const {label, value, gridArea} = this.props
+      const cName = gridArea ? `field-input ${gridArea}` : 'field-input'
+      return (
+        <div className={cName}>
+          <label htmlFor={label}>{label}</label>
+          <input id={label} defaultValue={value}></input>
+        </div>
+      )
+    }
+  }
+
+  class History extends Component {
+    render() {
+        const {details} = this.props
+        const [title, company] = details.slice(0, 2).map(item => item.value)
+        return (
+            <div className='history-item full-length'>
+                <h6>{title} - {company}</h6>
+            </div>
+        )
+    }
+  }
+
+export default FormField

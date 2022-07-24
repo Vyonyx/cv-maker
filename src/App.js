@@ -6,6 +6,11 @@ import ListField from './components/ListField';
 class App extends Component {
   constructor() {
     super()
+
+    this.addSkill = this.addSkill.bind(this)
+    this.addAward = this.addAward.bind(this)
+    this.addHobby = this.addHobby.bind(this)
+
     this.state = {
       form: {
         personal: [
@@ -48,9 +53,44 @@ class App extends Component {
             {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
           ],
         ],
-        skills: [],
+        skills: ['Photoshop', 'Rhino3D'],
+        awards: ['24 Design Competition - 2015'],
+        hobbies: ['Coding', 'Gaming']
       }
     }
+  }
+
+  addSkill(event) {
+    event.preventDefault()
+    const input = event.target.querySelector('INPUT')
+    const value = input.value
+    let prevState = Object(this.state)
+
+    prevState.form.skills = [...prevState.form.skills, value] 
+    this.setState(prevState)
+    input.value = ''
+  }
+
+  addAward(event) {
+    event.preventDefault()
+    const input = event.target.querySelector('INPUT')
+    const value = input.value
+    let prevState = Object(this.state)
+
+    prevState.form.awards = [...prevState.form.awards, value] 
+    this.setState(prevState)
+    input.value = ''
+  }
+
+  addHobby(event) {
+    event.preventDefault()
+    const input = event.target.querySelector('INPUT')
+    const value = input.value
+    let prevState = Object(this.state)
+
+    prevState.form.hobbies = [...prevState.form.hobbies, value] 
+    this.setState(prevState)
+    input.value = ''
   }
 
   render() {
@@ -61,8 +101,15 @@ class App extends Component {
             <div className='profile-photo'></div>
             <button className='myButton'>Upload Photo</button>
           </div>
-          <ListField details={{label: 'Skills:', skills: ['Photoshop', 'Rhino3D']}}/>
-          <ListField details={{label: 'Awards:', skills: ['24 Hour Design Competition - 2015']}}/>
+          <form onSubmit={this.addSkill}>
+            <ListField label='Skills:' items={this.state.form.skills}/>
+          </form>
+          <form onSubmit={this.addAward}>
+            <ListField label='Awards:' items={this.state.form.awards}/>
+          </form>
+          <form onSubmit={this.addHobby}>
+          <ListField label='Hobbies:' items={this.state.form.hobbies}/>
+          </form>
         </div>
 
         <div>

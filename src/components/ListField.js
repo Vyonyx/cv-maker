@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import uniqid from 'uniqid'
 
 export class ListField extends Component {
   render() {
-    const {label, skills} = this.props.details
+    const {label, items} = this.props
     return (
       <div className='skills'>
           <div className='skills-field'>
@@ -11,7 +12,7 @@ export class ListField extends Component {
             <button>+</button>
           </div>
           <div>
-            {skills.map((skill, index) => <h3 key={index} className='skill-item'>{skill}</h3>)}
+            {items.map((skill, index) => <h3 key={uniqid()} className='skill-item'>{skill}</h3>)}
           </div>
       </div>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import uniqid from 'uniqid'
 
 export class FormField extends Component {
     constructor(props) {
@@ -18,8 +19,8 @@ export class FormField extends Component {
     const cName = `form-field ${grid} ${formName}`
     return (
       <div className={cName}>
-        {fields.map((field, index) => <InputField key={index} label={field.label} value={field.value} gridArea={field.gridArea || ''} />)}
-        {history && history.map((item, index) => <History details={item} />)}
+        {fields.map(field => <InputField key={uniqid()} label={field.label} value={field.value} gridArea={field.gridArea || ''} />)}
+        {history && history.map((item, index) => <History key={uniqid()} details={item} />)}
       </div>
     )
   }
@@ -30,7 +31,7 @@ class InputField extends Component {
       const {label, value, gridArea} = this.props
       const cName = gridArea ? `field-input ${gridArea}` : 'field-input'
       return (
-        <div className={cName}>
+        <div className={cName} key={uniqid()}>
           <label htmlFor={label}>{label}</label>
           <input id={label} defaultValue={value}></input>
         </div>
@@ -43,8 +44,8 @@ class InputField extends Component {
         const {details} = this.props
         const [title, company] = details.slice(0, 2).map(item => item.value)
         return (
-            <div className='history-item full-length'>
-                <h6>{title} - {company}</h6>
+            <div className='history-item full-length' key={uniqid()}>
+                <h6 key={uniqid()}>{title} - {company}</h6>
             </div>
         )
     }

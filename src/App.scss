@@ -74,8 +74,6 @@ html {
 // ---------------------------------------- POSITIONING. ----------------------------------------
 .App {
     position: relative;
-    width: 100vw;
-    height: 100vh;
 
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -123,6 +121,8 @@ html {
 // ---------------------------------------- STYLING. ----------------------------------------
 
 .App {
+    width: 100vw;
+    min-height: 100vh;
     background: $base-gradient;
     gap: 2rem;
     padding: 2rem;

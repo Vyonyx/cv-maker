@@ -113,9 +113,15 @@ class App extends Component {
         </div>
 
         <div>
-        <FormField grid='main' formName='personal' fields={this.state.form.personal} history={null}/>
-        <FormField grid='main' formName='jobs' fields={this.state.form.job} history={this.state.form.jobHistory}/>
-        <FormField grid='main' formName='school' fields={this.state.form.school} history={this.state.form.schoolHistory}/>
+        <form>
+          <FormField grid='main' formName='personal' fields={this.state.form.personal} history={null}/>
+        </form>
+        <form>
+          <FormField grid='main'formName='jobs' fields={this.state.form.job} history={this.state.form.jobHistory}/>
+        </form>
+        <form>
+          <FormField grid='main' formName='school' fields={this.state.form.school} history={this.state.form.schoolHistory}/>
+        </form>
         <button className='myButton'>Preview PDF</button>
         </div>
 

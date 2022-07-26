@@ -20,7 +20,8 @@ export class FormField extends Component {
     return (
       <div className={cName}>
         {fields.map(field => <InputField key={uniqid()} label={field.label} value={field.value} gridArea={field.gridArea || ''} />)}
-        {history && history.map((item, index) => <History key={uniqid()} details={item} />)}
+        {history && history.map((item) => <History key={uniqid()} details={item} />)}
+        {history && <button className='myButton'>+</button>}
       </div>
     )
   }

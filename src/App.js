@@ -10,6 +10,7 @@ class App extends Component {
     this.addSkill = this.addSkill.bind(this)
     this.addAward = this.addAward.bind(this)
     this.addHobby = this.addHobby.bind(this)
+    this.copy = this.copy.bind(this)
 
     this.state = {
       personal: [
@@ -58,37 +59,39 @@ class App extends Component {
     }
   }
 
+  copy = (items) => items.map(item => Array.isArray(item) ? this.copy(item) : item)
+
   addSkill(event) {
     event.preventDefault()
     const input = event.target.querySelector('INPUT')
     const value = input.value
-    let prevState = Object(this.state)
-
-    prevState.skills = [...prevState.skills, value] 
-    this.setState(prevState)
     input.value = ''
+
+    this.setState({
+      skills: [...this.state.skills, value]
+    })
   }
 
   addAward(event) {
     event.preventDefault()
     const input = event.target.querySelector('INPUT')
     const value = input.value
-    let prevState = Object(this.state)
-
-    prevState.awards = [...prevState.awards, value] 
-    this.setState(prevState)
     input.value = ''
+
+    this.setState({
+      awards: [...this.state.awards, value]
+    })
   }
 
   addHobby(event) {
     event.preventDefault()
     const input = event.target.querySelector('INPUT')
     const value = input.value
-    let prevState = Object(this.state)
-
-    prevState.hobbies = [...prevState.hobbies, value] 
-    this.setState(prevState)
     input.value = ''
+
+    this.setState({
+      hobbies: [...this.state.hobbies, value]
+    })
   }
 
   render() {

@@ -11,6 +11,8 @@ class App extends Component {
     this.addAward = this.addAward.bind(this)
     this.addHobby = this.addHobby.bind(this)
     this.copy = this.copy.bind(this)
+    this.addJob = this.addJob.bind(this)
+    this.addSchool = this.addSchool.bind(this)
 
     this.state = {
       personal: [
@@ -21,8 +23,8 @@ class App extends Component {
         {label: 'Email:', value: 'shaneel_kumar@live.com', gridArea: 'email'}
       ],
       job: [
-        {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
-        {label: 'Company:', value: 'Prime Designs', gridArea: 'company'},
+        {label: 'Job Title:', value: '', gridArea: 'jobTitle'},
+        {label: 'Company:', value: '', gridArea: 'company'},
         {label: 'From:', value: '', gridArea: null},
         {label: 'To:', value: '', gridArea: null},
         {label: 'Description:', value: '', gridArea: 'description'},
@@ -35,11 +37,11 @@ class App extends Component {
         [
           {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
           {label: 'Company:', value: 'Design Network Architecture Ltd', gridArea: 'company'},
-        ],
+        ]
       ],
       school: [
-        {label: 'Degree:', value: 'Master of Architecture [Prof.]', gridArea: 'full-length'},
-        {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
+        {label: 'Degree:', value: '', gridArea: 'full-length'},
+        {label: 'School:', value: '', gridArea: 'full-length'},
         {label: 'From:', value: '', gridArea: null},
         {label: 'To:', value: '', gridArea: null},
       ],
@@ -60,6 +62,38 @@ class App extends Component {
   }
 
   copy = (items) => items.map(item => Array.isArray(item) ? this.copy(item) : item)
+
+  addJob(event) {
+    event.preventDefault()
+    let formTemplate = [...this.state.job]
+    const inputValues = Array.from(event.target.querySelectorAll('INPUT')).map(input => input.value)
+
+    formTemplate = formTemplate.map((elm, index) => {
+      const newElm = {...elm}
+      newElm.value = inputValues[index]
+      return newElm
+    })
+
+    this.setState({
+      jobHistory: [...this.state.jobHistory, formTemplate]
+    })
+  }
+
+  addSchool(event) {
+    event.preventDefault()
+    let formTemplate = [...this.state.school]
+    const inputValues = Array.from(event.target.querySelectorAll('INPUT')).map(input => input.value)
+
+    formTemplate = formTemplate.map((elm, index) => {
+      const newElm = {...elm}
+      newElm.value = inputValues[index]
+      return newElm
+    })
+
+    this.setState({
+      schoolHistory: [...this.state.schoolHistory, formTemplate]
+    })
+  }
 
   addSkill(event) {
     event.preventDefault()
@@ -117,10 +151,10 @@ class App extends Component {
         <form>
           <FormField grid='main' formName='personal' fields={this.state.personal} history={null}/>
         </form>
-        <form>
+        <form onSubmit={this.addJob}>
           <FormField grid='main'formName='jobs' fields={this.state.job} history={this.state.jobHistory}/>
         </form>
-        <form>
+        <form onSubmit={this.addSchool}>
           <FormField grid='main' formName='school' fields={this.state.school} history={this.state.schoolHistory}/>
         </form>
         <button className='myButton'>Preview PDF</button>

@@ -131,38 +131,39 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <div className='photo-field'>
-            <div className='profile-photo'></div>
-            <button className='myButton'>Upload Photo</button>
+        <section class="forms">
+          <div>
+            <div className='photo-field'>
+              <div className='profile-photo'></div>
+              <button className='myButton'>Upload Photo</button>
+            </div>
+            <form onSubmit={this.addSkill}>
+              <ListField label='Skills:' items={this.state.skills}/>
+            </form>
+            <form onSubmit={this.addAward}>
+              <ListField label='Awards:' items={this.state.awards}/>
+            </form>
+            <form onSubmit={this.addHobby}>
+            <ListField label='Hobbies:' items={this.state.hobbies}/>
+            </form>
           </div>
-          <form onSubmit={this.addSkill}>
-            <ListField label='Skills:' items={this.state.skills}/>
-          </form>
-          <form onSubmit={this.addAward}>
-            <ListField label='Awards:' items={this.state.awards}/>
-          </form>
-          <form onSubmit={this.addHobby}>
-          <ListField label='Hobbies:' items={this.state.hobbies}/>
-          </form>
-        </div>
-
-        <div>
-        <form>
-          <FormField grid='main' formName='personal' fields={this.state.personal} history={null}/>
-        </form>
-        <form onSubmit={this.addJob}>
-          <FormField grid='main'formName='jobs' fields={this.state.job} history={this.state.jobHistory}/>
-        </form>
-        <form onSubmit={this.addSchool}>
-          <FormField grid='main' formName='school' fields={this.state.school} history={this.state.schoolHistory}/>
-        </form>
-        <button className='myButton'>Preview PDF</button>
-        </div>
-
+          <div>
+            <form>
+              <FormField grid='main' formName='personal' fields={this.state.personal} history={null}/>
+            </form>
+            <form onSubmit={this.addJob}>
+              <FormField grid='main'formName='jobs' fields={this.state.job} history={this.state.jobHistory}/>
+            </form>
+            <form onSubmit={this.addSchool}>
+              <FormField grid='main' formName='school' fields={this.state.school} history={this.state.schoolHistory}/>
+            </form>
+            <button className='myButton'>Preview PDF</button>
+          </div>
         <div>
           <h1 className='logo'>CV</h1>
         </div>
+        </section>
+
       </div>
     );
   }

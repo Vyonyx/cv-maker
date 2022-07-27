@@ -81,7 +81,7 @@ html {
 }
 
 // ---------------------------------------- POSITIONING. ----------------------------------------
-.App {
+.forms {
     position: relative;
 
     display: grid;
@@ -133,10 +133,14 @@ html {
 // --------------------------------------------------------------------------------
 // ---------------------------------------- STYLING. ----------------------------------------
 
-.App {
+.App, .forms {
+    background: $base-gradient;
     width: 100vw;
     min-height: 100vh;
-    background: $base-gradient;
+
+}
+
+.forms {
     gap: 2rem;
     padding: 2rem;
 }
@@ -189,7 +193,7 @@ html {
     }
 }
 
-.App .skills {
+.forms .skills {
     @include fieldBG();
     margin-top: 2rem;
 
@@ -237,3 +241,14 @@ html {
     color: transparent;
 }
 // --------------------------------------------------------------------------------
+
+@media only screen and (max-width: 1200px) {
+    .logo { display: none; }
+    .forms { grid-template-columns: 1fr 2fr; }
+}
+
+@media only screen and (max-width: 1000px) {
+    .logo { display: none; }
+    .forms { grid-template-columns: 1fr; }
+    .App {max-width: 600px;}
+}

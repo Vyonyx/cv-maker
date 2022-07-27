@@ -12,51 +12,49 @@ class App extends Component {
     this.addHobby = this.addHobby.bind(this)
 
     this.state = {
-      form: {
-        personal: [
-          {label: 'First Name:', value: 'Shaneel', gridArea: null},
-          {label: 'Last Name:', value: 'Kumar', gridArea: null},
-          {label: 'Current Title:', value: 'Architectural Technician', gridArea: null},
-          {label: 'Mobile:', value: '02102797962', gridArea: null},
-          {label: 'Email:', value: 'shaneel_kumar@live.com', gridArea: 'email'}
-        ],
-        job: [
+      personal: [
+        {label: 'First Name:', value: 'Shaneel', gridArea: null},
+        {label: 'Last Name:', value: 'Kumar', gridArea: null},
+        {label: 'Current Title:', value: 'Architectural Technician', gridArea: null},
+        {label: 'Mobile:', value: '02102797962', gridArea: null},
+        {label: 'Email:', value: 'shaneel_kumar@live.com', gridArea: 'email'}
+      ],
+      job: [
+        {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
+        {label: 'Company:', value: 'Prime Designs', gridArea: 'company'},
+        {label: 'From:', value: '', gridArea: null},
+        {label: 'To:', value: '', gridArea: null},
+        {label: 'Description:', value: '', gridArea: 'description'},
+      ],
+      jobHistory: [
+        [
           {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
           {label: 'Company:', value: 'Prime Designs', gridArea: 'company'},
-          {label: 'From:', value: '', gridArea: null},
-          {label: 'To:', value: '', gridArea: null},
-          {label: 'Description:', value: '', gridArea: 'description'},
         ],
-        jobHistory: [
-          [
-            {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
-            {label: 'Company:', value: 'Prime Designs', gridArea: 'company'},
-          ],
-          [
-            {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
-            {label: 'Company:', value: 'Design Network Architecture Ltd', gridArea: 'company'},
-          ],
+        [
+          {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
+          {label: 'Company:', value: 'Design Network Architecture Ltd', gridArea: 'company'},
         ],
-        school: [
+      ],
+      school: [
+        {label: 'Degree:', value: 'Master of Architecture [Prof.]', gridArea: 'full-length'},
+        {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
+        {label: 'From:', value: '', gridArea: null},
+        {label: 'To:', value: '', gridArea: null},
+      ],
+      schoolHistory: [
+        [
           {label: 'Degree:', value: 'Master of Architecture [Prof.]', gridArea: 'full-length'},
           {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
-          {label: 'From:', value: '', gridArea: null},
-          {label: 'To:', value: '', gridArea: null},
         ],
-        schoolHistory: [
-          [
-            {label: 'Degree:', value: 'Master of Architecture [Prof.]', gridArea: 'full-length'},
-            {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
-          ],
-          [
-            {label: 'Degree:', value: 'Bachelor of Architectural Studies', gridArea: 'full-length'},
-            {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
-          ],
+        [
+          {label: 'Degree:', value: 'Bachelor of Architectural Studies', gridArea: 'full-length'},
+          {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
         ],
-        skills: ['Photoshop', 'Rhino3D'],
-        awards: ['24 Design Competition - 2015'],
-        hobbies: ['Coding', 'Gaming']
-      }
+      ],
+      skills: ['Photoshop', 'Rhino3D'],
+      awards: ['24 Design Competition - 2015'],
+      hobbies: ['Coding', 'Gaming']
     }
   }
 
@@ -66,7 +64,7 @@ class App extends Component {
     const value = input.value
     let prevState = Object(this.state)
 
-    prevState.form.skills = [...prevState.form.skills, value] 
+    prevState.skills = [...prevState.skills, value] 
     this.setState(prevState)
     input.value = ''
   }
@@ -77,7 +75,7 @@ class App extends Component {
     const value = input.value
     let prevState = Object(this.state)
 
-    prevState.form.awards = [...prevState.form.awards, value] 
+    prevState.awards = [...prevState.awards, value] 
     this.setState(prevState)
     input.value = ''
   }
@@ -88,7 +86,7 @@ class App extends Component {
     const value = input.value
     let prevState = Object(this.state)
 
-    prevState.form.hobbies = [...prevState.form.hobbies, value] 
+    prevState.hobbies = [...prevState.hobbies, value] 
     this.setState(prevState)
     input.value = ''
   }
@@ -102,25 +100,25 @@ class App extends Component {
             <button className='myButton'>Upload Photo</button>
           </div>
           <form onSubmit={this.addSkill}>
-            <ListField label='Skills:' items={this.state.form.skills}/>
+            <ListField label='Skills:' items={this.state.skills}/>
           </form>
           <form onSubmit={this.addAward}>
-            <ListField label='Awards:' items={this.state.form.awards}/>
+            <ListField label='Awards:' items={this.state.awards}/>
           </form>
           <form onSubmit={this.addHobby}>
-          <ListField label='Hobbies:' items={this.state.form.hobbies}/>
+          <ListField label='Hobbies:' items={this.state.hobbies}/>
           </form>
         </div>
 
         <div>
         <form>
-          <FormField grid='main' formName='personal' fields={this.state.form.personal} history={null}/>
+          <FormField grid='main' formName='personal' fields={this.state.personal} history={null}/>
         </form>
         <form>
-          <FormField grid='main'formName='jobs' fields={this.state.form.job} history={this.state.form.jobHistory}/>
+          <FormField grid='main'formName='jobs' fields={this.state.job} history={this.state.jobHistory}/>
         </form>
         <form>
-          <FormField grid='main' formName='school' fields={this.state.form.school} history={this.state.form.schoolHistory}/>
+          <FormField grid='main' formName='school' fields={this.state.school} history={this.state.schoolHistory}/>
         </form>
         <button className='myButton'>Preview PDF</button>
         </div>

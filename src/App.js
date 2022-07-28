@@ -150,17 +150,19 @@ class App extends Component {
         </section>
 
         <section className='preview hide'>
-          <h1>Why hello there.</h1>
+          <div className='page'>
+            
+          </div>
         </section>
 
-          <button style={printStyle} className='myButton print hide'>Print PDF</button>
-          <button style={previewStyle} onClick={this.toggleScreen} className='myButton'>Preview PDF</button>
+          <button style={printBtnStyle} className='myButton print hide'>Print PDF</button>
+          <button style={previewBtnStyle} onClick={this.toggleScreen} className='myButton'>Preview PDF</button>
       </div>
     );
   }
 }
 
-const previewStyle = {
+const previewBtnStyle = {
   position: 'absolute',
   bottom: '2rem',
   left: '50%',
@@ -168,7 +170,7 @@ const previewStyle = {
   width: '15rem',
 }
 
-const printStyle = {
+const printBtnStyle = {
   position: 'absolute',
   bottom: '7rem',
   left: '50%',

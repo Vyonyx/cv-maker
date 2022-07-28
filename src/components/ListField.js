@@ -7,6 +7,12 @@ export class ListField extends Component {
     event.preventDefault()
     const input = event.target.querySelector('INPUT')
     const value = input.value
+
+    if (value === '') {
+      alert('Write some text before adding.')
+      return
+    }
+
     input.value = ''
     this.props.addNewItem(this.props.field, value)
   }

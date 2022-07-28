@@ -7,8 +7,6 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    this.copy = this.copy.bind(this)
-
     this.state = {
       personal: [
         {label: 'First Name:', value: 'Shaneel', gridArea: null},
@@ -84,7 +82,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <section class="forms">
+        <section className="forms">
 
           <div className='secondary-fields'>
 
@@ -119,9 +117,6 @@ class App extends Component {
             <FormField
               formName='personal'
               fields={this.state.personal}
-              // history={null}
-              // detailField={null}
-              addDetails={this.addDetails}
             />
             <FormField
               formName='jobs'

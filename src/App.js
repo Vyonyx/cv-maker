@@ -7,9 +7,9 @@ class App extends Component {
   constructor() {
     super()
 
-    this.addSkill = this.addSkill.bind(this)
-    this.addAward = this.addAward.bind(this)
-    this.addHobby = this.addHobby.bind(this)
+    // this.addSkill = this.addSkill.bind(this)
+    // this.addAward = this.addAward.bind(this)
+    // this.addHobby = this.addHobby.bind(this)
     this.copy = this.copy.bind(this)
     this.addJob = this.addJob.bind(this)
     this.addSchool = this.addSchool.bind(this)
@@ -33,10 +33,16 @@ class App extends Component {
         [
           {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
           {label: 'Company:', value: 'Prime Designs', gridArea: 'company'},
+          {label: 'From:', value: '', gridArea: null},
+          {label: 'To:', value: '', gridArea: null},
+          {label: 'Description:', value: '', gridArea: 'description'},
         ],
         [
           {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
           {label: 'Company:', value: 'Design Network Architecture Ltd', gridArea: 'company'},
+          {label: 'From:', value: '', gridArea: null},
+          {label: 'To:', value: '', gridArea: null},
+          {label: 'Description:', value: '', gridArea: 'description'},
         ]
       ],
       school: [
@@ -49,10 +55,14 @@ class App extends Component {
         [
           {label: 'Degree:', value: 'Master of Architecture [Prof.]', gridArea: 'full-length'},
           {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
+          {label: 'From:', value: '', gridArea: null},
+          {label: 'To:', value: '', gridArea: null},
         ],
         [
           {label: 'Degree:', value: 'Bachelor of Architectural Studies', gridArea: 'full-length'},
           {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
+          {label: 'From:', value: '', gridArea: null},
+          {label: 'To:', value: '', gridArea: null},
         ],
       ],
       skills: ['Photoshop', 'Rhino3D'],
@@ -95,71 +105,71 @@ class App extends Component {
     })
   }
 
-  addSkill(event) {
-    event.preventDefault()
-    const input = event.target.querySelector('INPUT')
-    const value = input.value
-    input.value = ''
-
+  addSecondary = (field, item) => {
     this.setState({
-      skills: [...this.state.skills, value]
-    })
-  }
-
-  addAward(event) {
-    event.preventDefault()
-    const input = event.target.querySelector('INPUT')
-    const value = input.value
-    input.value = ''
-
-    this.setState({
-      awards: [...this.state.awards, value]
-    })
-  }
-
-  addHobby(event) {
-    event.preventDefault()
-    const input = event.target.querySelector('INPUT')
-    const value = input.value
-    input.value = ''
-
-    this.setState({
-      hobbies: [...this.state.hobbies, value]
+      [field]: [...this.state[field], item]
     })
   }
 
   render() {
     return (
       <div className="App">
+
         <section class="forms">
-          <div>
+
+          <div className='secondary-fields'>
+
             <div className='photo-field'>
               <div className='profile-photo'></div>
               <button className='myButton'>Upload Photo</button>
             </div>
-            <form onSubmit={this.addSkill}>
-              <ListField label='Skills:' items={this.state.skills}/>
-            </form>
-            <form onSubmit={this.addAward}>
-              <ListField label='Awards:' items={this.state.awards}/>
-            </form>
-            <form onSubmit={this.addHobby}>
-            <ListField label='Hobbies:' items={this.state.hobbies}/>
-            </form>
+
+            <ListField 
+              label='Skills:' 
+              field='skills'
+              items={this.state.skills}
+              addNewItem = {this.addSecondary}
+            />
+
+            <ListField 
+              label='Awards:'
+              field='awards' 
+              items={this.state.awards}
+              addNewItem = {this.addSecondary}
+            />
+
+            <ListField 
+              label='Hobbies:' 
+              field='hobbies'
+              items={this.state.hobbies}
+              addNewItem = {this.addSecondary}
+            />
           </div>
-          <div>
-            <form>
-              <FormField grid='main' formName='personal' fields={this.state.personal} history={null}/>
-            </form>
-            <form onSubmit={this.addJob}>
-              <FormField grid='main'formName='jobs' fields={this.state.job} history={this.state.jobHistory}/>
-            </form>
-            <form onSubmit={this.addSchool}>
-              <FormField grid='main' formName='school' fields={this.state.school} history={this.state.schoolHistory}/>
-            </form>
-            <button className='myButton'>Preview PDF</button>
+
+          <div className='primary-fields'>
+            <FormField
+              grid='main'
+              formName='personal'
+              fields={this.state.personal}
+              history={null}
+            />
+            <FormField
+              grid='main'
+              formName='jobs'
+              fields={this.state.job}
+              history={this.state.jobHistory}
+            />
+            <FormField
+              grid='main'
+              formName='school'
+              fields={this.state.school}
+              history={this.state.schoolHistory}
+            />
+          <button className='myButton'>Preview PDF</button>
           </div>
+
         <div>
+
           <h1 className='logo'>CV</h1>
         </div>
         </section>

@@ -78,6 +78,15 @@ class App extends Component {
     })
   }
 
+  toggleScreen = () => {
+    const fieldSection = document.querySelector('.forms')
+    const previewSection = document.querySelector('.preview')
+    const printButton = document.querySelector('.print')
+    fieldSection.classList.toggle('hide')
+    previewSection.classList.toggle('hide')
+    printButton.classList.toggle('hide')
+  }
+
   render() {
     return (
       <div className="App">
@@ -132,7 +141,6 @@ class App extends Component {
               detailField='schoolHistory'
               addDetails={this.addDetails}
             />
-          <button className='myButton'>Preview PDF</button>
           </div>
 
         <div>
@@ -141,9 +149,31 @@ class App extends Component {
         </div>
         </section>
 
+        <section className='preview hide'>
+          <h1>Why hello there.</h1>
+        </section>
+
+          <button style={printStyle} className='myButton print hide'>Print PDF</button>
+          <button style={previewStyle} onClick={this.toggleScreen} className='myButton'>Preview PDF</button>
       </div>
     );
   }
+}
+
+const previewStyle = {
+  position: 'absolute',
+  bottom: '2rem',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  width: '15rem',
+}
+
+const printStyle = {
+  position: 'absolute',
+  bottom: '7rem',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  width: '15rem',
 }
 
 export default App;

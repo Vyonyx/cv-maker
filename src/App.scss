@@ -133,6 +133,10 @@ html {
 // --------------------------------------------------------------------------------
 // ---------------------------------------- STYLING. ----------------------------------------
 
+.App {
+    position: relative;
+}
+
 .App, .forms {
     background: $base-gradient;
     width: 100vw;
@@ -175,6 +179,10 @@ html {
 
 .form-field + .form-field {
     margin-top: 2rem;
+}
+
+.primary-fields {
+    padding-bottom: 5rem;
 }
 
 .photo-field {
@@ -240,15 +248,23 @@ html {
     background-clip: text;
     color: transparent;
 }
+
+.hide {
+    display: none;
+}
+// --------------------------------------------------------------------------------
+// ---------------------------------------- TRANSITIONS. ----------------------------------------
+
+
 // --------------------------------------------------------------------------------
 
 @media only screen and (max-width: 1200px) {
     .logo { display: none; }
-    .forms { grid-template-columns: 1fr 2fr; }
+    .forms, .preview { grid-template-columns: 1fr 2fr; }
 }
 
 @media only screen and (max-width: 1000px) {
     .logo { display: none; }
-    .forms { grid-template-columns: 1fr; }
+    .forms, .preview { grid-template-columns: 1fr; }
     .App {max-width: 600px;}
 }

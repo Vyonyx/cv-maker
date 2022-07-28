@@ -7,6 +7,20 @@ export class FormField extends Component {
         this.populateFields = this.populateFields.bind(this)
     }
 
+    formSubmit = (event) => {
+      event.preventDefault()
+      let formTemplate = [...this.props.fields]
+      const inputValues = Array.from(event.target.querySelectorAll('INPUT')).map(input => input.value)
+
+      formTemplate = formTemplate.map((elm, index) => {
+        const newElm = {...elm}
+        newElm.value = inputValues[index]
+        return newElm
+      })
+
+      this.props.addDetails(this.props.detailField, formTemplate)
+    }
+
     populateFields() {
         const {fields} = this.props.fields
         return fields.map(field => {
@@ -19,7 +33,7 @@ export class FormField extends Component {
     const cName = `form-field ${grid} ${formName}`
 
     return (
-      <form className={cName}>
+      <form onSubmit={this.formSubmit} className={cName}>
         {fields.map(field => <InputField key={uniqid()} label={field.label} value={field.value} gridArea={field.gridArea || ''} />)}
         {history && history.map((item) => <History key={uniqid()} details={item} />)}
         {history && <button className='myButton'>+</button>}

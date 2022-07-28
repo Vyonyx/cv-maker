@@ -4,15 +4,10 @@ import FormField from './components/FormField';
 import ListField from './components/ListField';
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
-    // this.addSkill = this.addSkill.bind(this)
-    // this.addAward = this.addAward.bind(this)
-    // this.addHobby = this.addHobby.bind(this)
     this.copy = this.copy.bind(this)
-    this.addJob = this.addJob.bind(this)
-    this.addSchool = this.addSchool.bind(this)
 
     this.state = {
       personal: [
@@ -73,35 +68,9 @@ class App extends Component {
 
   copy = (items) => items.map(item => Array.isArray(item) ? this.copy(item) : item)
 
-  addJob(event) {
-    event.preventDefault()
-    let formTemplate = [...this.state.job]
-    const inputValues = Array.from(event.target.querySelectorAll('INPUT')).map(input => input.value)
-
-    formTemplate = formTemplate.map((elm, index) => {
-      const newElm = {...elm}
-      newElm.value = inputValues[index]
-      return newElm
-    })
-
+  addDetails = (field, item) => {
     this.setState({
-      jobHistory: [...this.state.jobHistory, formTemplate]
-    })
-  }
-
-  addSchool(event) {
-    event.preventDefault()
-    let formTemplate = [...this.state.school]
-    const inputValues = Array.from(event.target.querySelectorAll('INPUT')).map(input => input.value)
-
-    formTemplate = formTemplate.map((elm, index) => {
-      const newElm = {...elm}
-      newElm.value = inputValues[index]
-      return newElm
-    })
-
-    this.setState({
-      schoolHistory: [...this.state.schoolHistory, formTemplate]
+      [field]: [...this.state[field], item]
     })
   }
 
@@ -148,22 +117,25 @@ class App extends Component {
 
           <div className='primary-fields'>
             <FormField
-              grid='main'
               formName='personal'
               fields={this.state.personal}
-              history={null}
+              // history={null}
+              // detailField={null}
+              addDetails={this.addDetails}
             />
             <FormField
-              grid='main'
               formName='jobs'
               fields={this.state.job}
               history={this.state.jobHistory}
+              detailField='jobHistory'
+              addDetails={this.addDetails}
             />
             <FormField
-              grid='main'
               formName='school'
               fields={this.state.school}
               history={this.state.schoolHistory}
+              detailField='schoolHistory'
+              addDetails={this.addDetails}
             />
           <button className='myButton'>Preview PDF</button>
           </div>

@@ -12,7 +12,7 @@ export class ListField extends Component {
   }
 
   render() {
-    const {label, items, addNewItem} = this.props
+    const {label, items} = this.props
     return (
       <form onSubmit={this.formSubmit} className='skills'>
           <div className='skills-field'>

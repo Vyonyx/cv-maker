@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.scss'
 import FormField from './components/FormField';
 import ListField from './components/ListField';
+import PDF from './PDF';
 
 class App extends Component {
   constructor(props) {
@@ -150,9 +151,7 @@ class App extends Component {
         </section>
 
         <section className='preview hide'>
-          <div className='page'>
-            
-          </div>
+          <PDF />
         </section>
 
           <button style={printBtnStyle} className='myButton print hide'>Print PDF</button>

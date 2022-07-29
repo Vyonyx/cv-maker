@@ -264,6 +264,31 @@ html {
         height: calc(297mm * $modifier);
         background: white;
         box-shadow: 1rem 1rem 1rem rgba($default-blue, 0.35);
+
+        display: grid;
+        grid: 
+            'header photo' 20rem
+            'main sidebar' 1fr /
+            2fr 1fr;
+        
+        .header {
+            grid-area: header;
+            background: #666;
+        }
+
+        .photo {
+            grid-area: photo;
+            background: #000;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background: #333;
+        }
+
+        .main {
+            grid-area: main;
+        }
     }
 }
 

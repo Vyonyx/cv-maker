@@ -1,5 +1,7 @@
-import React, {Component} from 'react';
-import uniqid from 'uniqid'
+import React, {Component} from 'react'
+// import uniqid from 'uniqid'
+
+import Page from './components/Page'
 
 class App extends Component {
   constructor() {
@@ -61,126 +63,6 @@ class App extends Component {
         <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} />
       </div>
     );
-  }
-}
-
-// Page Components.
-class Page extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-  render() {
-    const {firstName, lastName, currentTitle, mobile, email, jobList, schoolList, skillsList, hobbiesList} = this.props.details
-    return (
-      <div className='PDF'>
-
-        {firstName && lastName && <h1>{firstName} {lastName}</h1>}
-        {currentTitle && <h3>Current Title: {currentTitle}</h3>}
-        {mobile && <h3>Mobile: {mobile}</h3>}
-        {email && <h3>Email: {email}</h3>}
-
-        {jobList.length > 0 && 
-        <JobHistory 
-          label='Job History:' 
-          listID='jobList' 
-          history={jobList}
-          deleteListItem={this.props.deleteListItem}
-        />}
-
-        {schoolList.length > 0 && 
-        <SchoolHistory 
-          label='School History:' 
-          listID='schoolList' 
-          history={schoolList}
-          deleteListItem={this.props.deleteListItem}
-        />}
-
-        {skillsList.length > 0 && 
-        <ListDisplay 
-          label='Skills:' 
-          listID='skillsList' 
-          list={skillsList}
-          deleteListItem={this.props.deleteListItem}
-        />}
-        
-        {hobbiesList.length > 0 && 
-        <ListDisplay 
-          label='Hobbies:' 
-          listID='hobbiesList' 
-          list={hobbiesList} 
-          deleteListItem={this.props.deleteListItem}
-        />}
-
-      </div>
-    )
-  }
-}
-
-class JobHistory extends Component {
-  render() {
-    const {label, history} = this.props
-    return (
-      <div>
-        <h3>{label}</h3>
-        {history.map(item => {
-        const {title, company, from, to, description} = item
-          return <div key={uniqid()}>
-            <ul>
-              {title && <li key={uniqid()}>{title}</li>}
-              {company && <li key={uniqid()}>{company}</li>}
-              {from && <li key={uniqid()}>{from}</li>}
-              {to && <li key={uniqid()}>{to}</li>}
-              {description && <li key={uniqid()}>{description}</li>}
-            </ul>
-            <button onClick={(e) => {this.props.deleteListItem(this.props.listID, item)}}>Delete</button>
-          </div>
-        })}
-      </div>
-    )
-  }
-}
-
-class SchoolHistory extends Component {
-  render() {
-    const {label, history} = this.props
-    return (
-      <div>
-        <h3>{label}</h3>
-        {history.map(item => {
-        const {degree, school, from, to} = item
-          return <div key={uniqid()}>
-            <ul>
-              {degree && <li key={uniqid()}>{degree}</li>}
-              {school && <li key={uniqid()}>{school}</li>}
-              {from && <li key={uniqid()}>{from}</li>}
-              {to && <li key={uniqid()}>{to}</li>}
-            </ul>
-            <button onClick={(e) => {this.props.deleteListItem(this.props.listID, item)}}>Delete</button>
-          </div>
-        })}
-      </div>
-    )
-  }
-}
-
-class ListDisplay extends Component {
-  render() {
-    const {label, list} = this.props
-    return (
-      <div>
-        <h3>{label}</h3>
-        <ul>
-          {list
-            .map(item => Object.values(item)
-            .map(value => <li key={uniqid()}>
-              <h3>{value}</h3>
-              <button onClick={(e) => {this.props.deleteListItem(this.props.listID, item)}}>x</button>
-            </li>))
-          }
-        </ul>
-      </div>
-    )
   }
 }
 

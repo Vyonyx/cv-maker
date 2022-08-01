@@ -1,180 +1,396 @@
 import React, {Component} from 'react';
-import './App.scss'
-import FormField from './components/FormField';
-import ListField from './components/ListField';
-import PDF from './PDF';
+import uniqid from 'uniqid'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-
+  constructor() {
+    super();
     this.state = {
-      personal: [
-        {label: 'First Name:', value: 'Shaneel', gridArea: null},
-        {label: 'Last Name:', value: 'Kumar', gridArea: null},
-        {label: 'Current Title:', value: 'Architectural Technician', gridArea: null},
-        {label: 'Mobile:', value: '02102797962', gridArea: null},
-        {label: 'Email:', value: 'shaneel_kumar@live.com', gridArea: 'email'}
-      ],
-      job: [
-        {label: 'Job Title:', value: '', gridArea: 'jobTitle'},
-        {label: 'Company:', value: '', gridArea: 'company'},
-        {label: 'From:', value: '', gridArea: null},
-        {label: 'To:', value: '', gridArea: null},
-        {label: 'Description:', value: '', gridArea: 'description'},
-      ],
-      jobHistory: [
-        [
-          {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
-          {label: 'Company:', value: 'Prime Designs', gridArea: 'company'},
-          {label: 'From:', value: '', gridArea: null},
-          {label: 'To:', value: '', gridArea: null},
-          {label: 'Description:', value: '', gridArea: 'description'},
-        ],
-        [
-          {label: 'Job Title:', value: 'Architectural Technician', gridArea: 'jobTitle'},
-          {label: 'Company:', value: 'Design Network Architecture Ltd', gridArea: 'company'},
-          {label: 'From:', value: '', gridArea: null},
-          {label: 'To:', value: '', gridArea: null},
-          {label: 'Description:', value: '', gridArea: 'description'},
-        ]
-      ],
-      school: [
-        {label: 'Degree:', value: '', gridArea: 'full-length'},
-        {label: 'School:', value: '', gridArea: 'full-length'},
-        {label: 'From:', value: '', gridArea: null},
-        {label: 'To:', value: '', gridArea: null},
-      ],
-      schoolHistory: [
-        [
-          {label: 'Degree:', value: 'Master of Architecture [Prof.]', gridArea: 'full-length'},
-          {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
-          {label: 'From:', value: '', gridArea: null},
-          {label: 'To:', value: '', gridArea: null},
-        ],
-        [
-          {label: 'Degree:', value: 'Bachelor of Architectural Studies', gridArea: 'full-length'},
-          {label: 'School:', value: 'Victoria University of Wellington', gridArea: 'full-length'},
-          {label: 'From:', value: '', gridArea: null},
-          {label: 'To:', value: '', gridArea: null},
-        ],
-      ],
-      skills: ['Photoshop', 'Rhino3D'],
-      awards: ['24 Design Competition - 2015'],
-      hobbies: ['Coding', 'Gaming']
+      firstName: '',
+      lastName: '',
+      currentTitle: '',
+      age: '',
+      mobile: '',
+      email: '',
+      profilePhoto: null,
+      jobList: [],
+      schoolList: [],
+      skillsList: [],
+      hobbiesList: [],
     }
   }
 
-  copy = (items) => items.map(item => Array.isArray(item) ? this.copy(item) : item)
-
-  addDetails = (field, item) => {
-    this.setState({
-      [field]: [...this.state[field], item]
+  setMainState = (stateInfo) => {
+    const keys = Object.keys(stateInfo)
+    keys.forEach(key => {
+      this.setState({
+        [key]: stateInfo[key]
+      })
     })
   }
 
-  addSecondary = (field, item) => {
+  appendToListState = (listID, item) => {
     this.setState({
-      [field]: [...this.state[field], item]
+      [listID]: [...this.state[listID], item]
     })
   }
 
-  toggleScreen = () => {
-    const fieldSection = document.querySelector('.forms')
-    const previewSection = document.querySelector('.preview')
-    const printButton = document.querySelector('.print')
-    fieldSection.classList.toggle('hide')
-    previewSection.classList.toggle('hide')
-    printButton.classList.toggle('hide')
+  deleteListItem = (listID, value) => {
+    this.setState({
+      [listID]: [...this.state[listID].filter(item => item !== value)]
+    })
+  }
+
+  setProfilePhoto = (url) => {
+    this.setState({
+      profilePhoto: url
+    })
   }
 
   render() {
     return (
       <div className="App">
+        <PhotoUpload setPhoto={this.setProfilePhoto} />
+        {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
 
-        <section className="forms">
+        <PersonalForm formSubmit={this.setMainState} />
+        <JobForm formSubmit={this.appendToListState} />
+        <SchoolForm formSubmit={this.appendToListState} />
 
-          <div className='secondary-fields'>
-
-            <div className='photo-field'>
-              <div className='profile-photo'></div>
-              <button className='myButton'>Upload Photo</button>
-            </div>
-
-            <ListField 
-              label='Skills:' 
-              field='skills'
-              items={this.state.skills}
-              addNewItem = {this.addSecondary}
-            />
-
-            <ListField 
-              label='Awards:'
-              field='awards' 
-              items={this.state.awards}
-              addNewItem = {this.addSecondary}
-            />
-
-            <ListField 
-              label='Hobbies:' 
-              field='hobbies'
-              items={this.state.hobbies}
-              addNewItem = {this.addSecondary}
-            />
-          </div>
-
-          <div className='primary-fields'>
-            <FormField
-              formName='personal'
-              fields={this.state.personal}
-            />
-            <FormField
-              formName='jobs'
-              fields={this.state.job}
-              history={this.state.jobHistory}
-              detailField='jobHistory'
-              addDetails={this.addDetails}
-            />
-            <FormField
-              formName='school'
-              fields={this.state.school}
-              history={this.state.schoolHistory}
-              detailField='schoolHistory'
-              addDetails={this.addDetails}
-            />
-          </div>
-
-        <div>
-
-          <h1 className='logo'>CV</h1>
-        </div>
-        </section>
-
-        <section className='preview hide'>
-          <PDF />
-        </section>
-
-          <button style={printBtnStyle} className='myButton print hide'>Print PDF</button>
-          <button style={previewBtnStyle} onClick={this.toggleScreen} className='myButton'>Preview PDF</button>
+        <SkillsForm formSubmit={this.appendToListState} />
+        <HobbiesForm formSubmit={this.appendToListState} />
+        <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} />
       </div>
     );
   }
 }
 
-const previewBtnStyle = {
-  position: 'absolute',
-  bottom: '2rem',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: '15rem',
+// Page Components.
+class Page extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  render() {
+    const {firstName, lastName, currentTitle, mobile, email, jobList, schoolList, skillsList, hobbiesList} = this.props.details
+    return (
+      <div className='PDF'>
+
+        {firstName && lastName && <h1>{firstName} {lastName}</h1>}
+        {currentTitle && <h3>Current Title: {currentTitle}</h3>}
+        {mobile && <h3>Mobile: {mobile}</h3>}
+        {email && <h3>Email: {email}</h3>}
+
+        {jobList.length > 0 && 
+        <JobHistory 
+          label='Job History:' 
+          listID='jobList' 
+          history={jobList}
+          deleteListItem={this.props.deleteListItem}
+        />}
+
+        {schoolList.length > 0 && 
+        <SchoolHistory 
+          label='School History:' 
+          listID='schoolList' 
+          history={schoolList}
+          deleteListItem={this.props.deleteListItem}
+        />}
+
+        {skillsList.length > 0 && 
+        <ListDisplay 
+          label='Skills:' 
+          listID='skillsList' 
+          list={skillsList}
+          deleteListItem={this.props.deleteListItem}
+        />}
+        
+        {hobbiesList.length > 0 && 
+        <ListDisplay 
+          label='Hobbies:' 
+          listID='hobbiesList' 
+          list={hobbiesList} 
+          deleteListItem={this.props.deleteListItem}
+        />}
+
+      </div>
+    )
+  }
 }
 
-const printBtnStyle = {
-  position: 'absolute',
-  bottom: '7rem',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: '15rem',
+class JobHistory extends Component {
+  render() {
+    const {label, history} = this.props
+    return (
+      <div>
+        <h3>{label}</h3>
+        {history.map(item => {
+        const {title, company, from, to, description} = item
+          return <div key={uniqid()}>
+            <ul>
+              {title && <li key={uniqid()}>{title}</li>}
+              {company && <li key={uniqid()}>{company}</li>}
+              {from && <li key={uniqid()}>{from}</li>}
+              {to && <li key={uniqid()}>{to}</li>}
+              {description && <li key={uniqid()}>{description}</li>}
+            </ul>
+            <button onClick={(e) => {this.props.deleteListItem(this.props.listID, item)}}>Delete</button>
+          </div>
+        })}
+      </div>
+    )
+  }
+}
+
+class SchoolHistory extends Component {
+  render() {
+    const {label, history} = this.props
+    return (
+      <div>
+        <h3>{label}</h3>
+        {history.map(item => {
+        const {degree, school, from, to} = item
+          return <div key={uniqid()}>
+            <ul>
+              {degree && <li key={uniqid()}>{degree}</li>}
+              {school && <li key={uniqid()}>{school}</li>}
+              {from && <li key={uniqid()}>{from}</li>}
+              {to && <li key={uniqid()}>{to}</li>}
+            </ul>
+            <button onClick={(e) => {this.props.deleteListItem(this.props.listID, item)}}>Delete</button>
+          </div>
+        })}
+      </div>
+    )
+  }
+}
+
+class ListDisplay extends Component {
+  render() {
+    const {label, list} = this.props
+    return (
+      <div>
+        <h3>{label}</h3>
+        <ul>
+          {list
+            .map(item => Object.values(item)
+            .map(value => <li key={uniqid()}>
+              <h3>{value}</h3>
+              <button onClick={(e) => {this.props.deleteListItem(this.props.listID, item)}}>x</button>
+            </li>))
+          }
+        </ul>
+      </div>
+    )
+  }
+}
+
+class PhotoUpload extends Component {
+  state = {
+    photo: ''
+  }
+
+  whenPhotoUploaded = (event) => {
+    this.setState(prevState => {
+      prevState.photo = URL.createObjectURL(event.target.files[0])
+    }, () => {this.props.setPhoto(this.state.photo)})
+  }
+
+
+  render() {
+    return (
+      <div>
+        <label>Profile Photo: </label>
+        <input type='file' onChange={this.whenPhotoUploaded}></input>
+      </div>
+    )
+  }
+}
+
+class PhotoDisplay extends Component {
+  render() {
+    const {profilePhoto} = this.props
+    return (
+      <img src={profilePhoto} alt='Profile'></img>
+    )
+  }
+}
+
+// Form components.
+class Form extends Component {
+  // Updates the local state of this form component.
+  updateState = (field, value) => {
+    this.setState({
+      [field]: value
+    })
+  }
+
+  // Clear inputs during form submission.
+  clearInputFields = (event) => {
+    const inputs = event.target.querySelectorAll('INPUT')
+    Array.from(inputs).forEach(input => input.value = '')
+  }
+
+  clearTemplate = () => {
+    try {
+      Object.keys(this.template).forEach(key => this.template[key] = '')
+    } catch {}
+  }
+
+  // Overwrite the main state of the App using this form's substate.
+  submitState = (event) => {
+    event.preventDefault()
+    this.clearInputFields(event)
+    this.clearTemplate()
+    this.props.formSubmit({...this.state})
+  }
+}
+
+class ListForm extends Form {
+
+  // Updates the template values so that it can be appended to the state array/list
+  // that is keeping track of the history.
+  updateTemplate = (key, value) => {
+    this.template = {...this.template, [key]: value}
+  }
+
+  // Append template to form state array/list and then submit that to the main App state.
+  submitListState = (event, field, item) => {
+    event.preventDefault()
+    this.clearInputFields(event)
+    this.setState(prevState => ({
+      [field]: [{...this.template}]
+    }), () => this.props.formSubmit(field, item))
+  }
+}
+
+class PersonalForm extends Form {
+  state = {
+    firstName: '',
+    lastName: '',
+    currentTitle: '',
+    age: '',
+    mobile: '',
+    email: '',
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.submitState}>
+        <MyInput label='First Name:' field='firstName' updateFunction={this.updateState}/>
+        <MyInput label='Last Name' field='lastName' updateFunction={this.updateState}/>
+        <MyInput label='Title:' field='currentTitle' updateFunction={this.updateState}/>
+        <MyInput label='Age:' field='age' updateFunction={this.updateState}/>
+        <MyInput label='Mobile:' field='mobile' updateFunction={this.updateState}/>
+        <MyInput label='Email:' field='email' updateFunction={this.updateState}/>
+        <button>Submit Personal</button>
+      </form>
+    )
+  }
+}
+
+class JobForm extends ListForm {
+  state = {
+    jobList: [],
+  }
+
+  template = {
+    title: '',
+    company: '',
+    from: '',
+    to: '',
+    description: '',
+  }
+
+  render() {
+    return (
+      <form onSubmit={(e) => {this.submitListState(e, 'jobList', this.template)}}>
+        <ListInput label='Title:' field='title' subState={'template'} updateFunction={this.updateTemplate}/>
+        <ListInput label='Company:' field='company' subState={'template'} updateFunction={this.updateTemplate}/>
+        <ListInput label='From:' field='from' subState={'template'} updateFunction={this.updateTemplate}/>
+        <ListInput label='To:' field='to' subState={'template'} updateFunction={this.updateTemplate}/>
+        <ListInput label='Description:' field='description' subState={'template'} updateFunction={this.updateTemplate}/>
+        <button>Add Job Details</button>
+      </form>
+    )
+  }
+}
+
+class SchoolForm extends ListForm {
+  state = {
+    schoolList: [],
+  }
+
+  template = {
+    degree: '',
+    school: '',
+    from: '',
+    to: '',
+  }
+
+  render() {
+    return (
+      <form onSubmit={(e) => {this.submitListState(e, 'schoolList', this.template)}}>
+        <ListInput label='Degree:' field='degree' subState={'template'} updateFunction={this.updateTemplate}/>
+        <ListInput label='School:' field='school' subState={'template'} updateFunction={this.updateTemplate}/>
+        <ListInput label='From:' field='from' subState={'template'} updateFunction={this.updateTemplate}/>
+        <ListInput label='To:' field='to' subState={'template'} updateFunction={this.updateTemplate}/>
+        <button>Add School Details</button>
+      </form>
+    )
+  }
+}
+
+class SkillsForm extends ListForm {
+  template = {
+    skillName: ''
+  }
+
+  render() {
+    return (
+      <form onSubmit={(e) => {this.submitListState(e, 'skillsList', this.template)}}>
+        <ListInput label='Skill:' field='skillName' updateFunction={this.updateTemplate}/>
+        <button>Add Skill</button>
+      </form>
+    )
+  }
+}
+
+class HobbiesForm extends ListForm {
+  template = {
+    hobbyName: ''
+  }
+
+  render() {
+    return (
+      <form onSubmit={(e) => {this.submitListState(e, 'hobbiesList', this.template)}}>
+        <ListInput label='Hobby:' field='hobbyName' updateFunction={this.updateTemplate}/>
+        <button>Add Hobby</button>
+      </form>
+    )
+  }
+}
+
+// Input components.
+class MyInput extends Component {
+  render() {
+    return (
+      <div>
+        <label>{this.props.label}</label>
+        <input onChange={(e) => {this.props.updateFunction(this.props.field, e.target.value)}}></input>
+      </div>
+    )
+  }
+}
+
+class ListInput extends Component {
+  render() {
+    return (
+      <div>
+        <label>{this.props.label}</label>
+        <input onChange={(e) => {this.props.updateFunction(this.props.field, e.target.value, this.props.subField)}}></input>
+      </div>
+    )
+  }
 }
 
 export default App;

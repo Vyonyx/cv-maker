@@ -5,9 +5,9 @@ import PhotoUpload from './components/PhotoUpload'
 import PersonalForm from './components/PersonalForm'
 import JobForm from './components/JobForm'
 import SchoolForm from './components/SchoolForm'
-
-import { ListForm } from './components/FormMethods'
-import { ListInput } from './components/Inputs'
+import PhotoDisplay from './components/PhotoDisplay'
+import SkillsForm from './components/SkillsForm'
+import HobbiesForm from './components/HobbiesForm'
 
 class App extends Component {
   constructor() {
@@ -69,45 +69,6 @@ class App extends Component {
         <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} />
       </div>
     );
-  }
-}
-
-class PhotoDisplay extends Component {
-  render() {
-    const {profilePhoto} = this.props
-    return (
-      <img src={profilePhoto} alt='Profile'></img>
-    )
-  }
-}
-
-class SkillsForm extends ListForm {
-  template = {
-    skillName: ''
-  }
-
-  render() {
-    return (
-      <form onSubmit={(e) => {this.submitListState(e, 'skillsList', this.template)}}>
-        <ListInput label='Skill:' field='skillName' updateFunction={this.updateTemplate}/>
-        <button>Add Skill</button>
-      </form>
-    )
-  }
-}
-
-class HobbiesForm extends ListForm {
-  template = {
-    hobbyName: ''
-  }
-
-  render() {
-    return (
-      <form onSubmit={(e) => {this.submitListState(e, 'hobbiesList', this.template)}}>
-        <ListInput label='Hobby:' field='hobbyName' updateFunction={this.updateTemplate}/>
-        <button>Add Hobby</button>
-      </form>
-    )
   }
 }
 

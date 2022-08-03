@@ -12,6 +12,7 @@ import HobbiesForm from './components/HobbiesForm'
 
 import GlobalStyles from './components/styles/Global'
 import { FormSection } from './components/styles/FormSection.styled'
+import { StyledLogo } from './components/styles/Logo.styled'
 
 const theme = {
   screenSwitch: '768px',
@@ -90,7 +91,7 @@ class App extends Component {
             </div>
             
             <div>
-              <h1>CV</h1>
+              <StyledLogo className='logo'>CV</StyledLogo>
             </div>
           </FormSection>
 

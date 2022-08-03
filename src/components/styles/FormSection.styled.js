@@ -10,6 +10,10 @@ export const FormSection = styled.section`
         display: flex;
         flex-direction: column;
         gap: 1rem;
+
+        .logo {
+            align-self: center;
+        }
     }
 
     @media(min-width: ${({ theme }) => theme.screenSwitch}) {

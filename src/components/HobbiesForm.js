@@ -1,6 +1,6 @@
 import { ListForm } from './FormMethods'
-import { ListInput } from './Inputs'
-import { StyledHobbiesForm } from './styles/HobbiesForm.styled'
+import { ButtonInput } from './Inputs'
+import { StyledForm } from './styles/StyledForm.styled'
 
 class HobbiesForm extends ListForm {
     template = {
@@ -9,10 +9,9 @@ class HobbiesForm extends ListForm {
   
     render() {
       return (
-        <StyledHobbiesForm onSubmit={(e) => {this.submitListState(e, 'hobbiesList', this.template)}}>
-          <ListInput label='Hobby:' field='hobbyName' updateFunction={this.updateTemplate}/>
-          <button>Add Hobby</button>
-        </StyledHobbiesForm>
+        <StyledForm onSubmit={(e) => {this.submitListState(e, 'hobbiesList', this.template)}}>
+          <ButtonInput label='Hobby:' field='hobbyName' updateFunction={this.updateTemplate}/>
+        </StyledForm>
       )
     }
   }

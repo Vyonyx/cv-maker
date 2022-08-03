@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import { ThemeProvider } from 'styled-components'
 
 import Page from './components/Page'
 import PhotoUpload from './components/PhotoUpload'
@@ -8,6 +9,21 @@ import SchoolForm from './components/SchoolForm'
 import PhotoDisplay from './components/PhotoDisplay'
 import SkillsForm from './components/SkillsForm'
 import HobbiesForm from './components/HobbiesForm'
+
+import GlobalStyles from './components/styles/Global'
+import { FormSection } from './components/styles/FormSection.styled'
+
+const theme = {
+  screenSwitch: '768px',
+  gradient: {
+    main: 'linear-gradient(to right, #BDC3C7, #2C3E50)',
+    inputField: 'linear-gradient(to right, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.25))',
+  },
+  colors: {
+    mainBlue: '#2C3E50',
+    formBG: 'rgba(255, 255, 255, .3)',
+  },
+}
 
 class App extends Component {
   constructor() {
@@ -56,18 +72,35 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <PhotoUpload setPhoto={this.setProfilePhoto} />
-        {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
+      <ThemeProvider theme={ theme }>
+        <>
+        <GlobalStyles />
 
-        <PersonalForm formSubmit={this.setMainState} />
-        <JobForm formSubmit={this.appendToListState} />
-        <SchoolForm formSubmit={this.appendToListState} />
+          <FormSection>
+            <div>
+              <PersonalForm formSubmit={this.setMainState} />
+              <JobForm formSubmit={this.appendToListState} />
+              <SchoolForm formSubmit={this.appendToListState} />
+            </div>
 
-        <SkillsForm formSubmit={this.appendToListState} />
-        <HobbiesForm formSubmit={this.appendToListState} />
-        <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} />
-      </div>
+            <div>
+              <PhotoUpload setPhoto={this.setProfilePhoto} />
+              <SkillsForm formSubmit={this.appendToListState} />
+              <HobbiesForm formSubmit={this.appendToListState} />
+            </div>
+            
+            <div>
+              <h1>CV</h1>
+            </div>
+          </FormSection>
+
+          <section style={{ display:'none' }}>
+            {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
+            <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} />
+          </section>
+
+        </>
+      </ThemeProvider>
     );
   }
 }

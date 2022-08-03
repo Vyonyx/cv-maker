@@ -1,7 +1,7 @@
 import { ListForm } from "./FormMethods";
 import { ListInput } from './Inputs'
 
-import { StyledForm } from './styles/StyledForm.styled'
+import { StyledMainForm } from './styles/StyledForms.styled'
 
 class JobForm extends ListForm {
     state = {
@@ -18,14 +18,14 @@ class JobForm extends ListForm {
   
     render() {
         return (
-            <StyledForm onSubmit={(e) => {this.submitListState(e, 'jobList', this.template)}}>
+            <StyledMainForm onSubmit={(e) => {this.submitListState(e, 'jobList', this.template)}}>
                 <ListInput label='Title:' field='title' subState={'template'} updateFunction={this.updateTemplate}/>
                 <ListInput label='Company:' field='company' subState={'template'} updateFunction={this.updateTemplate}/>
                 <ListInput label='From:' field='from' subState={'template'} updateFunction={this.updateTemplate}/>
                 <ListInput label='To:' field='to' subState={'template'} updateFunction={this.updateTemplate}/>
                 <ListInput label='Description:' field='description' subState={'template'} updateFunction={this.updateTemplate}/>
-                <button>+</button>
-            </StyledForm>
+                <button>Add Job Details</button>
+            </StyledMainForm>
         )
     }
   }

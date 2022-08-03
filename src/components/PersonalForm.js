@@ -1,7 +1,7 @@
 import { Form } from "./FormMethods";
 import { Input } from './Inputs'
 
-import { StyledForm } from './styles/StyledForm.styled'
+import { StyledMainForm } from './styles/StyledForms.styled'
 
 class PersonalForm extends Form {
     state = {
@@ -15,15 +15,15 @@ class PersonalForm extends Form {
 
     render() {
         return (
-            <StyledForm onSubmit={this.submitState}>
+            <StyledMainForm onSubmit={this.submitState}>
             <Input label='First Name:' field='firstName' updateFunction={this.updateState}/>
             <Input label='Last Name' field='lastName' updateFunction={this.updateState}/>
             <Input label='Title:' field='currentTitle' updateFunction={this.updateState}/>
             <Input label='Age:' field='age' updateFunction={this.updateState}/>
             <Input label='Mobile:' field='mobile' updateFunction={this.updateState}/>
             <Input label='Email:' field='email' updateFunction={this.updateState}/>
-            <button>+</button>
-            </StyledForm>
+            <button>Add Personal Details</button>
+            </StyledMainForm>
         )
     }
 }

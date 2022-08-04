@@ -19,6 +19,7 @@ const theme = {
   gradient: {
     main: 'linear-gradient(to right, #BDC3C7, #2C3E50)',
     inputField: 'linear-gradient(to right, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.25))',
+    inverseMain: 'linear-gradient(to left, #BDC3C7, #2C3E50, #2C3E50)',
   },
   colors: {
     mainBlue: '#2C3E50',
@@ -86,8 +87,8 @@ class App extends Component {
 
             <div>
               <PhotoUpload setPhoto={this.setProfilePhoto} />
-              <SkillsForm formSubmit={this.appendToListState} />
-              <HobbiesForm formSubmit={this.appendToListState} />
+              <SkillsForm formSubmit={this.appendToListState} history={this.state.skillsList} />
+              <HobbiesForm formSubmit={this.appendToListState} history={this.state.hobbiesList} />
             </div>
             
             <div>

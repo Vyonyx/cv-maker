@@ -69,3 +69,20 @@ export const StyledMainForm = styled.form`
         background: ${({ theme }) => theme.gradient.inputField};
     }
 `
+
+export const StyledHistory = styled.ul`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    li {
+        padding: 0.5rem;
+        padding-left: 1rem;
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.75);
+        border-left: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 0.5rem;
+        color: white;
+        background: ${({ theme }) => theme.gradient.inverseMain}
+    }
+`

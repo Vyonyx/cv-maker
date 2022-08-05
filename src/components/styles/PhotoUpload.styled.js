@@ -37,6 +37,8 @@ export const StyledPhotoUpload = styled.div`
         object-fit: cover;
         object-position: center;
         border-radius: 50%;
+        border: 3px solid white;
+        box-sizing: border-box;
     }
 
     @media(min-width: 768px) {

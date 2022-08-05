@@ -4,10 +4,14 @@ import { StyledInput, StyledListInput, StyledButtonInput } from './styles/Inputs
 // Input components.
 export class Input extends Component {
     render() {
+      const { defaultValue } = this.props
       return (
-        <StyledInput>
+        <StyledInput defaultValue={defaultValue}>
           <label>{this.props.label}</label>
-          <input onChange={(e) => {this.props.updateFunction(this.props.field, e.target.value)}}></input>
+          <input 
+            onChange={(e) => {this.props.updateFunction(this.props.field, e.target.value)}}
+            value={defaultValue}
+          ></input>
         </StyledInput>
       )
     }

@@ -14,14 +14,15 @@ class PersonalForm extends Form {
     }
 
     render() {
+        const { firstName, lastName, currentTitle, age, mobile, email } = this.state
         return (
             <StyledMainForm onSubmit={this.submitState}>
-            <Input label='First Name:' field='firstName' updateFunction={this.updateState}/>
-            <Input label='Last Name' field='lastName' updateFunction={this.updateState}/>
-            <Input label='Title:' field='currentTitle' updateFunction={this.updateState}/>
-            <Input label='Age:' field='age' updateFunction={this.updateState}/>
-            <Input label='Mobile:' field='mobile' updateFunction={this.updateState}/>
-            <Input label='Email:' field='email' updateFunction={this.updateState}/>
+            <Input label='First Name:' field='firstName' updateFunction={this.updateState} defaultValue={firstName} />
+            <Input label='Last Name' field='lastName' updateFunction={this.updateState} defaultValue={lastName} />
+            <Input label='Title:' field='currentTitle' updateFunction={this.updateState} defaultValue={currentTitle} />
+            <Input label='Age:' field='age' updateFunction={this.updateState} defaultValue={age} />
+            <Input label='Mobile:' field='mobile' updateFunction={this.updateState} defaultValue={mobile} />
+            <Input label='Email:' field='email' updateFunction={this.updateState} defaultValue={email} />
             <button>Add Personal Details</button>
             </StyledMainForm>
         )

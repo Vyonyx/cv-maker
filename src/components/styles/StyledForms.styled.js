@@ -49,10 +49,10 @@ export const StyledMainForm = styled.form`
     }
 
     input {
-        background: ${({ theme }) => theme.gradient.inputField};
+        // background: ${({ theme }) => theme.gradient.inputField};
         border: none;
-        border-top: 2px solid rgba(255, 255, 255, .5);
-        border-left: 2px solid rgba(255, 255, 255, .5);
+        border-top: 1px solid rgba(255, 255, 255, 1);
+        border-left: 1px solid rgba(255, 255, 255, 1);
         border-radius: .5rem;
         height: 2rem;
         font-size: 1rem;

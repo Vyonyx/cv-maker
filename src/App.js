@@ -80,7 +80,7 @@ class App extends Component {
 
           <FormSection>
             <div>
-              <PersonalForm formSubmit={this.setMainState} />
+              <PersonalForm formSubmit={this.setMainState} submittedInfo={this.state} />
               <JobForm formSubmit={this.appendToListState} history={this.state.jobList} />
               <SchoolForm formSubmit={this.appendToListState} history={this.state.schoolList} />
             </div>

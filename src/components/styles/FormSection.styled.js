@@ -29,4 +29,17 @@ export const FormSection = styled.section`
             grid-area: sidebar;
         }
     }
+
+    ${({ viewStatus }) => !viewStatus && `
+        display: none;
+    `}
+`
+
+export const PDFSection = styled.section`
+    min-width: 100vw;
+    min-height: 100vh;
+
+    ${({ viewStatus }) => !viewStatus && `
+        display: none;
+    `}
 `

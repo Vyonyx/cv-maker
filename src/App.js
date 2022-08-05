@@ -11,7 +11,7 @@ import SkillsForm from './components/SkillsForm'
 import HobbiesForm from './components/HobbiesForm'
 
 import GlobalStyles from './components/styles/Global'
-import { FormSection } from './components/styles/FormSection.styled'
+import { FormSection, PDFSection } from './components/styles/FormSection.styled'
 import { StyledLogo } from './components/styles/Logo.styled'
 
 const theme = {
@@ -42,6 +42,8 @@ class App extends Component {
       schoolList: [],
       skillsList: [],
       hobbiesList: [],
+      viewForms: true,
+      viewPDF: false,
     }
   }
 
@@ -72,13 +74,20 @@ class App extends Component {
     })
   }
 
+  toggleViews = () => {
+    this.setState({
+      viewForms: this.state.viewForms === true ? false : true,
+      viewPDF: this.state.viewPDF === true ? false : true
+    })
+  }
+
   render() {
     return (
       <ThemeProvider theme={ theme }>
         <>
         <GlobalStyles />
 
-          <FormSection>
+          <FormSection viewStatus={this.state.viewForms}>
             <div>
               <PersonalForm formSubmit={this.setMainState} submittedInfo={this.state} />
               <JobForm formSubmit={this.appendToListState} history={this.state.jobList} />
@@ -93,13 +102,16 @@ class App extends Component {
             
             <div>
               <StyledLogo className='logo'>CV</StyledLogo>
+              <button onClick={this.toggleViews} >Preview PDF</button>
             </div>
           </FormSection>
 
-          <section style={{ display:'none' }}>
+          <PDFSection viewStatus={this.state.viewPDF}>
             {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
             <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} />
-          </section>
+            <StyledLogo className='logo'>CV</StyledLogo>
+            <button onClick={this.toggleViews} >Edit CV</button>
+          </PDFSection>
 
         </>
       </ThemeProvider>

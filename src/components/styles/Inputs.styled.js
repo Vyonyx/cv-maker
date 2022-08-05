@@ -29,6 +29,7 @@ export const StyledListInput = styled.div`
 
     input {
         flex: 1;
+        background: ${({ theme }) => theme.gradient.inputField};
     }
 `
 

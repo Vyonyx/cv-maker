@@ -86,7 +86,7 @@ class App extends Component {
             </div>
 
             <div>
-              <PhotoUpload setPhoto={this.setProfilePhoto} />
+              <PhotoUpload setPhoto={this.setProfilePhoto} photo={this.state.profilePhoto}/>
               <SkillsForm formSubmit={this.appendToListState} history={this.state.skillsList} />
               <HobbiesForm formSubmit={this.appendToListState} history={this.state.hobbiesList} />
             </div>

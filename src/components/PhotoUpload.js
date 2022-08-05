@@ -14,10 +14,13 @@ class PhotoUpload extends Component {
     }
   
     render() {
+      const { photo } = this.props
+      // const profilePhoto = new URL(photo)
       return (
         <StyledPhotoUpload>
           <label>Profile Photo: </label>
-          <input type='file' onChange={this.whenPhotoUploaded}></input>
+          <input id='photo' type='file' title=' ' onChange={this.whenPhotoUploaded}></input>
+          {photo != null && <div><img src={photo} alt=''></img></div>}
         </StyledPhotoUpload>
       )
     }

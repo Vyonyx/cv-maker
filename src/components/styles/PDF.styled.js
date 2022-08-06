@@ -43,6 +43,10 @@ export const StyledPDF = styled.article`
         grid-area: photo;
     }
 
+    .secondary {
+        grid-area: secondary;
+    }
+
     @media(min-width: ${({ theme }) => theme.screenSwitch}) {
         width: 210mm;
         height: 297mm;

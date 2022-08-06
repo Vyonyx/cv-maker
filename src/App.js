@@ -114,6 +114,14 @@ class App extends Component {
 
           <PDFSection viewStatus={this.state.viewPDF}>
             <StyledPDF>
+              <div className='header'>
+                <h1>{this.state.firstName} {this.state.lastName}</h1>
+                <div>
+                  {this.state.title !== '' && <h3>{this.state.currentTitle}</h3>}
+                  {this.state.mobile !== '' && <h3>{this.state.mobile}</h3>}
+                  {this.state.email !== '' && <h3>{this.state.email}</h3>}
+                </div>
+              </div>
               {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
             </StyledPDF>
             <StyledLogo className='logo'>PDF</StyledLogo>

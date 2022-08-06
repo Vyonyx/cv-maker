@@ -51,8 +51,11 @@ const GlobalStyles = createGlobalStyle`
 
     // -------------------- CUSTOM GLOBAL STYLING -------------------- //
 
+    html {
+        font-size: 15px;
+    }
+
     body {
-        font-sze: 62.5%;
         font-family: 'Inter', sans-serif;
         background: ${({ theme }) => theme.gradient.main};
     }

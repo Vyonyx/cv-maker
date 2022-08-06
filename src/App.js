@@ -81,6 +81,12 @@ class App extends Component {
     })
   }
 
+  editText = (event) => {
+    const val = window.prompt('What would you like to edit this text to?')
+    const text  = event.target
+    text.innerText = val
+  }
+
   render() {
     return (
       <ThemeProvider theme={ theme }>
@@ -109,7 +115,7 @@ class App extends Component {
           <PDFSection viewStatus={this.state.viewPDF}>
             {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
             <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} />
-            <StyledLogo className='logo'>CV</StyledLogo>
+            <StyledLogo className='logo'>PDF</StyledLogo>
             <button onClick={this.toggleViews} >Edit CV</button>
           </PDFSection>
 

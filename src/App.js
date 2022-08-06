@@ -113,7 +113,7 @@ class App extends Component {
           </FormSection>
 
           <PDFSection viewStatus={this.state.viewPDF}>
-            <StyledPDF>
+            <StyledPDF photo={this.state.profilePhoto}>
               <div className='header'>
                 <h1>{this.state.firstName} {this.state.lastName}</h1>
                 <div>

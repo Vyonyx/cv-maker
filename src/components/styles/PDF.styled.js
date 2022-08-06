@@ -52,4 +52,22 @@ export const StyledPDF = styled.article`
             'primary secondary' 1fr /
             1fr 65mm;
     }
+
+    ${({ photo }) => photo === null && `
+    grid:
+        'header header' 50mm
+        'primary secondary' 1fr /
+        1fr 50mm;
+    
+    .header {
+        grid-column: 1 / 3;
+    }
+
+        @media(min-width: ${({ theme }) => theme.screenSwitch}) {
+            grid:
+                'header header' 65mm
+                'primary secondary' 1fr /
+                1fr 65mm;
+        }
+    `}
 `

@@ -13,6 +13,7 @@ import HobbiesForm from './components/HobbiesForm'
 import GlobalStyles from './components/styles/Global'
 import { FormSection, PDFSection } from './components/styles/FormSection.styled'
 import { StyledLogo } from './components/styles/Logo.styled'
+import { StyledPDF } from './components/styles/PDF.styled'
 
 const theme = {
   screenSwitch: '768px',
@@ -113,8 +114,10 @@ class App extends Component {
           </FormSection>
 
           <PDFSection viewStatus={this.state.viewPDF}>
-            {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
-            <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} />
+            <StyledPDF>
+              {/* {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
+              <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} /> */}
+            </StyledPDF>
             <StyledLogo className='logo'>PDF</StyledLogo>
             <button onClick={this.toggleViews} >Edit CV</button>
           </PDFSection>

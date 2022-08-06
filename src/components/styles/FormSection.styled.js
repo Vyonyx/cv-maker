@@ -36,8 +36,12 @@ export const FormSection = styled.section`
 `
 
 export const PDFSection = styled.section`
-    min-width: 100vw;
-    min-height: 100vh;
+    height: 100%;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     ${({ viewStatus }) => !viewStatus && `
         display: none;

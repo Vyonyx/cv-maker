@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const StyledPhotoDisplay = styled.div`
-    img {
-        max-height: 400px;
-    }
+    display: flex;
+    width: 100%;
+    height: 100%;
 `

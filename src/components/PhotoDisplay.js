@@ -5,7 +5,7 @@ class PhotoDisplay extends Component {
     render() {
         const {profilePhoto} = this.props
         return (
-        <StyledPhotoDisplay>
+        <StyledPhotoDisplay className='photo'>
             <img src={profilePhoto} alt='Profile'></img>
         </StyledPhotoDisplay>
         )

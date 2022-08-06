@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import Page from './components/Page'
 import PhotoUpload from './components/PhotoUpload'
 import PersonalForm from './components/PersonalForm'
 import JobForm from './components/JobForm'
@@ -115,8 +114,7 @@ class App extends Component {
 
           <PDFSection viewStatus={this.state.viewPDF}>
             <StyledPDF>
-              {/* {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
-              <Page firstName={this.state.firstName} details={this.state} deleteListItem={this.deleteListItem} /> */}
+              {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}
             </StyledPDF>
             <StyledLogo className='logo'>PDF</StyledLogo>
             <button onClick={this.toggleViews} >Edit CV</button>

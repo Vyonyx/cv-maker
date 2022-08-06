@@ -4,7 +4,7 @@ export const StyledPDF = styled.article`
     width: ${210 * 0.75}mm;
     height: ${297 * 0.75}mm;
     margin: 3rem 0;
-    background: darkgrey;
+    background: white;
 
     display: grid;
     grid:
@@ -45,6 +45,8 @@ export const StyledPDF = styled.article`
 
     .secondary {
         grid-area: secondary;
+        background: lightgrey;
+        padding: 0 2rem;
     }
 
     @media(min-width: ${({ theme }) => theme.screenSwitch}) {

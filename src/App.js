@@ -118,9 +118,9 @@ class App extends Component {
                 <h1>{this.state.firstName} {this.state.lastName}</h1>
                 <div>
                   {this.state.age !== '' && <h3>Age: {this.state.age}</h3>}
-                  {this.state.title !== '' && <h3>{this.state.currentTitle}</h3>}
-                  {this.state.mobile !== '' && <h3>{this.state.mobile}</h3>}
-                  {this.state.email !== '' && <h3>{this.state.email}</h3>}
+                  {this.state.title !== '' && <h3>Current Title: {this.state.currentTitle}</h3>}
+                  {this.state.mobile !== '' && <h3>Cell: {this.state.mobile}</h3>}
+                  {this.state.email !== '' && <h3>Email: {this.state.email}</h3>}
                 </div>
               </div>
               {this.state.profilePhoto && <PhotoDisplay profilePhoto={this.state.profilePhoto}/>}

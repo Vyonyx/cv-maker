@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import uniqid from "uniqid";
 import { StyledPrimaryHeading } from "./styles/PrimaryHeading.styled";
 import styled from "styled-components";
 
@@ -10,14 +11,12 @@ export class PrimaryWorkDisplay extends Component {
         <StyledPrimaryHeading>{label}</StyledPrimaryHeading>
         {list.map((item) => {
           return (
-            <StyledWorkItem>
+            <StyledWorkItem key={uniqid()}>
               <div>
                 {item.company && (
                   <StyledSubHeading>{item.company}</StyledSubHeading>
                 )}
-                {item.city && (
-                  <StyledLocation>{item.city}</StyledLocation>
-                )}
+                {item.city && <StyledLocation>{item.city}</StyledLocation>}
                 {item.from && item.to && (
                   <StyledAccentHeading>
                     {item.from} - {item.to}
@@ -48,7 +47,7 @@ export class PrimarySchoolDisplay extends Component {
         <StyledPrimaryHeading>{label}</StyledPrimaryHeading>
         {list.map((item) => {
           return (
-            <StyledWorkItem>
+            <StyledWorkItem key={uniqid()}>
               <div>
                 {item.school && (
                   <StyledSubHeading>{item.school}</StyledSubHeading>

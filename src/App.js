@@ -19,6 +19,8 @@ import {
 } from "./components/styles/FormSection.styled";
 import { StyledLogo } from "./components/styles/Logo.styled";
 import { StyledPDF } from "./components/styles/PDF.styled";
+import { StyledAboutMeDisplay } from "./components/styles/AboutMeDisplay.styled";
+import { StyledSubHeading } from "./components/styles/SubHeading.styled";
 import SecondaryList from "./components/SecondaryList";
 
 const theme = {
@@ -46,7 +48,7 @@ class App extends Component {
       mobile: "",
       email: "",
       profilePhoto: null,
-      aboutMe: '',
+      aboutMe: "",
       jobList: [],
       schoolList: [],
       skillsList: [],
@@ -74,9 +76,9 @@ class App extends Component {
 
   setAboutMe = (description) => {
     this.setState({
-      aboutMe: description
-    })
-  }
+      aboutMe: description,
+    });
+  };
 
   deleteListItem = (listID, value) => {
     this.setState({
@@ -115,9 +117,7 @@ class App extends Component {
                 formSubmit={this.setMainState}
                 submittedInfo={this.state}
               />
-              <AboutMe
-                formSubmit={this.setAboutMe}
-              ></AboutMe>
+              <AboutMe formSubmit={this.setAboutMe}></AboutMe>
               <JobForm
                 formSubmit={this.appendToListState}
                 history={this.state.jobList}
@@ -180,6 +180,15 @@ class App extends Component {
                 <PhotoDisplay profilePhoto={this.state.profilePhoto} />
               )}
               <div className="secondary">
+                {this.state.aboutMe !== "" && (
+                  <div>
+                    <StyledSubHeading>About Me:</StyledSubHeading>
+                    <StyledAboutMeDisplay>
+                      {this.state.aboutMe}
+                    </StyledAboutMeDisplay>
+                  </div>
+                )}
+
                 {this.state.skillsList.length > 0 && (
                   <SecondaryList
                     label="Skills:"

@@ -6,6 +6,7 @@ import PhotoUpload from "./components/PhotoUpload";
 import PersonalForm from "./components/PersonalForm";
 import JobForm from "./components/JobForm";
 import SchoolForm from "./components/SchoolForm";
+import AboutMe from "./components/AboutMe";
 import PhotoDisplay from "./components/PhotoDisplay";
 import SkillsForm from "./components/SkillsForm";
 import HobbiesForm from "./components/HobbiesForm";
@@ -45,6 +46,7 @@ class App extends Component {
       mobile: "",
       email: "",
       profilePhoto: null,
+      aboutMe: '',
       jobList: [],
       schoolList: [],
       skillsList: [],
@@ -69,6 +71,12 @@ class App extends Component {
       [listID]: [...this.state[listID], item],
     });
   };
+
+  setAboutMe = (description) => {
+    this.setState({
+      aboutMe: description
+    })
+  }
 
   deleteListItem = (listID, value) => {
     this.setState({
@@ -107,6 +115,9 @@ class App extends Component {
                 formSubmit={this.setMainState}
                 submittedInfo={this.state}
               />
+              <AboutMe
+                formSubmit={this.setAboutMe}
+              ></AboutMe>
               <JobForm
                 formSubmit={this.appendToListState}
                 history={this.state.jobList}

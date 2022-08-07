@@ -8,9 +8,9 @@ export const StyledPDF = styled.article`
 
     display: grid;
     grid:
-        'header photo' 50mm
-        'primary secondary' 1fr /
-        1fr 50mm;
+        'photo header' 50mm
+        'secondary primary' 1fr /
+        50mm 1fr;
     gap: 0.5rem;
     padding: 0.5rem;
     
@@ -54,16 +54,16 @@ export const StyledPDF = styled.article`
         height: 297mm;
 
         grid:
-            'header photo' 65mm
-            'primary secondary' 1fr /
-            1fr 65mm;
+            'photo header' 65mm
+            'secondary primary' 1fr /
+            65mm 1fr;
     }
 
     ${({ photo }) => photo === null && `
     grid:
         'header header' 50mm
-        'primary secondary' 1fr /
-        1fr 50mm;
+        'secondary primary' 1fr /
+        50mm 1fr;
     
     .header {
         grid-column: 1 / 3;
@@ -72,8 +72,8 @@ export const StyledPDF = styled.article`
         @media(min-width: ${({ theme }) => theme.screenSwitch}) {
             grid:
                 'header header' 65mm
-                'primary secondary' 1fr /
-                1fr 65mm;
+                'secondary primary' 1fr /
+                65mm 1fr;
         }
     `}
 `

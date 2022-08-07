@@ -1,3 +1,4 @@
+import uniqid from 'uniqid'
 import { ListForm } from "./FormMethods";
 import { ListInput } from './Inputs'
 
@@ -11,6 +12,7 @@ class JobForm extends ListForm {
     template = {
         title: '',
         company: '',
+        city: '',
         from: '',
         to: '',
         description: '',
@@ -22,6 +24,7 @@ class JobForm extends ListForm {
             <StyledMainForm onSubmit={(e) => {this.submitListState(e, 'jobList', this.template)}}>
                 <ListInput label='Title:' field='title' subState={'template'} updateFunction={this.updateTemplate}/>
                 <ListInput label='Company:' field='company' subState={'template'} updateFunction={this.updateTemplate}/>
+                <ListInput label='City:' field='city' subState={'template'} updateFunction={this.updateTemplate}/>
                 <ListInput label='From:' field='from' subState={'template'} updateFunction={this.updateTemplate}/>
                 <ListInput label='To:' field='to' subState={'template'} updateFunction={this.updateTemplate}/>
                 <ListInput label='Description:' field='description' subState={'template'} updateFunction={this.updateTemplate}/>
@@ -29,7 +32,7 @@ class JobForm extends ListForm {
                 <StyledHistory>
                     {history.length > 0 && history.map(item => {
                         const { title, company } = item
-                        return <li>{title} - {company}</li>
+                        return <li key={uniqid()}>{title} - {company}</li>
                     })}
                 </StyledHistory>
             </StyledMainForm>

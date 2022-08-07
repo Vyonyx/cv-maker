@@ -1,3 +1,4 @@
+import uniqid from 'uniqid'
 import { ListForm } from "./FormMethods";
 import { ListInput } from './Inputs'
 
@@ -11,8 +12,10 @@ class SchoolForm extends ListForm {
     template = {
         degree: '',
         school: '',
+        city: '',
         from: '',
         to: '',
+        description: '',
     }
   
     render() {
@@ -21,13 +24,15 @@ class SchoolForm extends ListForm {
                 <StyledMainForm onSubmit={(e) => {this.submitListState(e, 'schoolList', this.template)}}>
                     <ListInput label='Degree:' field='degree' subState={'template'} updateFunction={this.updateTemplate}/>
                     <ListInput label='School:' field='school' subState={'template'} updateFunction={this.updateTemplate}/>
+                    <ListInput label='City:' field='city' subState={'template'} updateFunction={this.updateTemplate}/>
                     <ListInput label='From:' field='from' subState={'template'} updateFunction={this.updateTemplate}/>
                     <ListInput label='To:' field='to' subState={'template'} updateFunction={this.updateTemplate}/>
+                    <ListInput label='Description:' field='description' subState={'template'} updateFunction={this.updateTemplate}/>
                     <button>Add School Details</button>
                     <StyledHistory>
                         {history.length > 0 && history.map(item => {
                             const { degree, school } = item
-                            return <li>{degree} - {school}</li>
+                            return <li key={uniqid()}>{degree} - {school}</li>
                         })}
                     </StyledHistory>
                 </StyledMainForm>

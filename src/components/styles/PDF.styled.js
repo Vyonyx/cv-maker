@@ -21,7 +21,8 @@ export const StyledPDF = styled.article`
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        background: lightgrey;
+        background: darkgrey;
+        color: white;
 
         h1 {
             font-size: 3rem;
@@ -34,7 +35,7 @@ export const StyledPDF = styled.article`
             
             h3 {
                 font-size: 1rem;
-                color: grey;
+                color: black;
             }
         }
     }
@@ -46,6 +47,11 @@ export const StyledPDF = styled.article`
     .secondary {
         grid-area: secondary;
         border-right: 1px solid black;
+        padding: 0 2rem;
+    }
+
+    .primary {
+        grid-area: primary;
         padding: 0 2rem;
     }
 

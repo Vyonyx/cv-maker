@@ -21,6 +21,7 @@ import { StyledLogo } from "./components/styles/Logo.styled";
 import { StyledPDF } from "./components/styles/PDF.styled";
 import { StyledAboutMeDisplay } from "./components/styles/AboutMeDisplay.styled";
 import { StyledSubHeading } from "./components/styles/SubHeading.styled";
+import { PrimaryWorkDisplay, PrimarySchoolDisplay } from "./components/PrimaryDisplay";
 import SecondaryList from "./components/SecondaryList";
 
 const theme = {
@@ -208,6 +209,22 @@ class App extends Component {
                     label="Awards:"
                     items={this.state.awardsList}
                   ></SecondaryList>
+                )}
+              </div>
+
+              <div className="primary">
+                {this.state.jobList.length > 0 && (
+                  <PrimaryWorkDisplay
+                    label="Work Experience:"
+                    list={this.state.jobList}
+                  ></PrimaryWorkDisplay>
+                )}
+
+                {this.state.schoolList.length > 0 && (
+                  <PrimarySchoolDisplay
+                    label="Education:"
+                    list={this.state.schoolList}
+                  ></PrimarySchoolDisplay>
                 )}
               </div>
             </StyledPDF>

@@ -4,9 +4,13 @@ export const StyledSecondaryList = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin: 5rem 0;
 
-    h3 {
-        text-decoration: underline;
+    ul {
+        list-style: inside;
+        li {
+            margin: 0.25rem 0;
+            font-style: italic;
+            font-size: 1rem;
+        }
     }
 `

@@ -203,7 +203,7 @@ class App extends Component {
                   ></SecondaryList>
                 )}
 
-                {this.state.hobbiesList.length > 0 && (
+                {this.state.awardsList.length > 0 && (
                   <SecondaryList
                     label="Awards:"
                     items={this.state.awardsList}

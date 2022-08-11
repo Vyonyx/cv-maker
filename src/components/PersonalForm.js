@@ -1,5 +1,6 @@
 import { Form } from "./FormMethods";
 import { Input } from './Inputs'
+import { NavButtons } from './GeneralComponents'
 
 import { StyledMainForm } from './styles/StyledForms.styled'
 
@@ -65,7 +66,7 @@ class PersonalForm extends Form {
                 defaultValue={email} 
                 submittedValue={submittedEmail} 
             />
-            <button>Add Personal Details</button>
+            <NavButtons>Add Personal Details</NavButtons>
             </StyledMainForm>
         )
     }

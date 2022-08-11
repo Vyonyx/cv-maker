@@ -1,6 +1,7 @@
 import uniqid from "uniqid";
 import { ListForm } from "./FormMethods";
 import { ListInput } from "./Inputs";
+import { NavButtons } from "./GeneralComponents";
 
 import { StyledMainForm, StyledHistory } from "./styles/StyledForms.styled";
 
@@ -68,7 +69,7 @@ class SchoolForm extends ListForm {
           subState={"template"}
           updateFunction={this.updateTemplate}
         />
-        <button>Add School Details</button>
+        <NavButtons>Add School Details</NavButtons>
         <StyledHistory>
           {history.length > 0 &&
             history.map((item) => {

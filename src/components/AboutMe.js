@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyledMainForm } from "./styles/StyledForms.styled";
 import { StyledTextArea } from "./styles/AboutMe.styled";
+import { NavButtons } from "./GeneralComponents";
 
 export class AboutMe extends Component {
   state = {
@@ -27,7 +28,7 @@ export class AboutMe extends Component {
           currentValue={this.state.aboutMe}
           submittedValue={this.props.submittedValue}
         ></StyledTextArea>
-        <button>Submit About Me</button>
+        <NavButtons>Submit About Me</NavButtons>
       </StyledMainForm>
     );
   }

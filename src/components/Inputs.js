@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import { StyledInput, StyledListInput, StyledButtonInput } from './styles/Inputs.styled'
+import { SmallButtons } from './GeneralComponents'
 
 // Input components.
 export class Input extends Component {
@@ -34,7 +35,7 @@ export class Input extends Component {
         <StyledButtonInput>
           <label>{this.props.label}</label>
           <input onChange={(e) => {this.props.updateFunction(this.props.field, e.target.value, this.props.subField)}}></input>
-          <button>+</button>
+          <SmallButtons>+</SmallButtons>
         </StyledButtonInput>
       )
     }

@@ -16,3 +16,19 @@ export const NavButtons = styled.button`
     background: black;
   }
 `;
+
+export const SmallButtons = styled.button`
+  margin: 0.2rem 0;
+  width: 1rem;
+  height: 1rem;
+
+  align-self: center;
+  border-radius: 1rem;
+  border: none;
+  background: ${({ theme }) => theme.gradient.inputField};
+
+  &:hover {
+    color: white;
+    background: black;
+  }
+`;

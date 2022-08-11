@@ -143,17 +143,20 @@ class App extends Component {
                 key={uniqid()}
                 formSubmit={this.appendToListState}
                 history={this.state.skillsList}
+                deleteListItem={this.deleteListItem}
               />
               <HobbiesForm
                 key={uniqid()}
                 formSubmit={this.appendToListState}
                 history={this.state.hobbiesList}
+                deleteListItem={this.deleteListItem}
               />
 
               <AwardsForm
                 key={uniqid()}
                 formSubmit={this.appendToListState}
                 history={this.state.awardsList}
+                deleteListItem={this.deleteListItem}
               />
             </div>
 

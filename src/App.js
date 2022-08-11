@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import { ThemeProvider } from "styled-components";
+import ReactToPrint from "react-to-print";
 
 import PhotoUpload from "./components/PhotoUpload";
 import PersonalForm from "./components/PersonalForm";
 import JobForm from "./components/JobForm";
 import SchoolForm from "./components/SchoolForm";
 import AboutMe from "./components/AboutMe";
-import PhotoDisplay from "./components/PhotoDisplay";
 import SkillsForm from "./components/SkillsForm";
 import HobbiesForm from "./components/HobbiesForm";
 import AwardsForm from "./components/AwardsForm";
+
+import DummyPage from "./components/DummyPage";
+import { NavButtons } from "./components/GeneralComponents";
 
 import GlobalStyles from "./components/styles/Global";
 import {
@@ -18,11 +21,6 @@ import {
   PDFSection,
 } from "./components/styles/FormSection.styled";
 import { StyledLogo } from "./components/styles/Logo.styled";
-import { StyledPDF } from "./components/styles/PDF.styled";
-import { StyledAboutMeDisplay } from "./components/styles/AboutMeDisplay.styled";
-import { StyledSubHeading } from "./components/styles/SubHeading.styled";
-import { PrimaryWorkDisplay, PrimarySchoolDisplay } from "./components/PrimaryDisplay";
-import SecondaryList from "./components/SecondaryList";
 
 const theme = {
   screenSwitch: "768px",
@@ -106,6 +104,8 @@ class App extends Component {
     text.innerText = val;
   };
 
+  componentRef = null;
+
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -154,82 +154,23 @@ class App extends Component {
 
             <div>
               <StyledLogo className="logo">CV</StyledLogo>
-              <button onClick={this.toggleViews}>Preview PDF</button>
+              <NavButtons onClick={this.toggleViews}>Preview PDF</NavButtons>
             </div>
           </FormSection>
 
           <PDFSection viewStatus={this.state.viewPDF}>
-            <StyledPDF photo={this.state.profilePhoto}>
-              <div className="header">
-                <h1>
-                  {this.state.firstName} {this.state.lastName}
-                </h1>
-                <div>
-                  {this.state.age !== "" && <h3>Age: {this.state.age}</h3>}
-                  {this.state.currentTitle !== "" && (
-                    <h3>Current Title: {this.state.currentTitle}</h3>
-                  )}
-                  {this.state.mobile !== "" && (
-                    <h3>Cell: {this.state.mobile}</h3>
-                  )}
-                  {this.state.email !== "" && (
-                    <h3>Email: {this.state.email}</h3>
-                  )}
-                </div>
-              </div>
-              {this.state.profilePhoto && (
-                <PhotoDisplay profilePhoto={this.state.profilePhoto} />
-              )}
-              <div className="secondary">
-                {this.state.aboutMe !== "" && (
-                  <div>
-                    <StyledSubHeading>About Me:</StyledSubHeading>
-                    <StyledAboutMeDisplay>
-                      {this.state.aboutMe}
-                    </StyledAboutMeDisplay>
-                  </div>
-                )}
-
-                {this.state.skillsList.length > 0 && (
-                  <SecondaryList
-                    label="Skills:"
-                    items={this.state.skillsList}
-                  ></SecondaryList>
-                )}
-
-                {this.state.hobbiesList.length > 0 && (
-                  <SecondaryList
-                    label="Hobbies:"
-                    items={this.state.hobbiesList}
-                  ></SecondaryList>
-                )}
-
-                {this.state.awardsList.length > 0 && (
-                  <SecondaryList
-                    label="Awards:"
-                    items={this.state.awardsList}
-                  ></SecondaryList>
-                )}
-              </div>
-
-              <div className="primary">
-                {this.state.jobList.length > 0 && (
-                  <PrimaryWorkDisplay
-                    label="Work Experience:"
-                    list={this.state.jobList}
-                  ></PrimaryWorkDisplay>
-                )}
-
-                {this.state.schoolList.length > 0 && (
-                  <PrimarySchoolDisplay
-                    label="Education:"
-                    list={this.state.schoolList}
-                  ></PrimarySchoolDisplay>
-                )}
-              </div>
-            </StyledPDF>
+            <DummyPage
+              ref={(el) => (this.componentRef = el)}
+              details={this.state}
+            ></DummyPage>
             <StyledLogo className="logo">PDF</StyledLogo>
-            <button onClick={this.toggleViews}>Edit CV</button>
+            <NavButtons onClick={this.toggleViews}>Edit CV</NavButtons>
+            <ReactToPrint
+              trigger={() => {
+                return <NavButtons>Print PDF</NavButtons>;
+              }}
+              content={() => this.componentRef}
+            />
           </PDFSection>
         </>
       </ThemeProvider>

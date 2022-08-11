@@ -41,6 +41,10 @@ export class Form extends Component {
     // Append template to form state array/list and then submit that to the main App state.
     submitListState = (event, field, item) => {
       event.preventDefault()
+      if (Object.values(item)[0] === '') {
+        alert('Please fill in the field before adding.')
+        return
+      }
       this.clearInputFields(event)
       this.setState(prevState => ({
         [field]: [{...this.template}]

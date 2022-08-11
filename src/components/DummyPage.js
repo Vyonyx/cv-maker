@@ -1,3 +1,4 @@
+import uniqid from "uniqid";
 import React, { Component } from "react";
 import styled from "styled-components";
 
@@ -70,14 +71,16 @@ export class DummyPage extends Component {
           <h1>Work Experience:</h1>
           {details.jobList.map((item) => {
             return (
-              <JobDetails>
+              <JobDetails key={uniqid()}>
                 <h3>{item.company}</h3>
                 <h3>{item.title}</h3>
                 <div>
                   <h4>{item.city}</h4>
-                  <h4>
-                    {item.from} - {item.to}
-                  </h4>
+                  {item.from !== "" && item.to !== "" && (
+                    <h4>
+                      {item.from} - {item.to}
+                    </h4>
+                  )}
                 </div>
                 <p>{item.description}</p>
               </JobDetails>
@@ -87,14 +90,16 @@ export class DummyPage extends Component {
           <h1>Education:</h1>
           {details.schoolList.map((item) => {
             return (
-              <JobDetails>
+              <JobDetails key={uniqid()}>
                 <h3>{item.degree}</h3>
                 <h3>{item.school}</h3>
                 <div>
                   <h4>{item.city}</h4>
-                  <h4>
-                    {item.from} - {item.to}
-                  </h4>
+                  {item.from !== "" && item.to !== "" && (
+                    <h4>
+                      {item.from} - {item.to}
+                    </h4>
+                  )}
                 </div>
                 <p>{item.description}</p>
               </JobDetails>

@@ -118,7 +118,10 @@ class App extends Component {
                 formSubmit={this.setMainState}
                 submittedInfo={this.state}
               />
-              <AboutMe formSubmit={this.setAboutMe}></AboutMe>
+              <AboutMe
+                formSubmit={this.setAboutMe}
+                submittedValue={this.state.aboutMe}
+              ></AboutMe>
               <JobForm
                 formSubmit={this.appendToListState}
                 history={this.state.jobList}

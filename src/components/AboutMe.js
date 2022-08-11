@@ -16,8 +16,6 @@ export class AboutMe extends Component {
   submitAboutMe = (e) => {
     e.preventDefault();
     this.props.formSubmit(this.state.aboutMe);
-    const targ = e.target.querySelector("textarea");
-    targ.value = "";
   };
 
   render() {
@@ -26,6 +24,8 @@ export class AboutMe extends Component {
         <StyledTextArea
           onChange={this.updateAboutMe}
           placeholder="Description about yourself..."
+          currentValue={this.state.aboutMe}
+          submittedValue={this.props.submittedValue}
         ></StyledTextArea>
         <button>Submit About Me</button>
       </StyledMainForm>

@@ -23,12 +23,12 @@ class SchoolForm extends ListForm {
     return (
       <StyledMainForm
         onSubmit={(e) => {
-            e.preventDefault()
-            const { degree, school } = this.template
-            if (degree === "" || school === "") {
-                alert('Please fill in degree and school details.')
-                return
-            }
+          e.preventDefault();
+          const { degree, school } = this.template;
+          if (degree === "" || school === "") {
+            alert("Please fill in degree and school details.");
+            return;
+          }
           this.submitListState(e, "schoolList", this.template);
         }}
       >
@@ -76,7 +76,14 @@ class SchoolForm extends ListForm {
               return (
                 <li key={uniqid()}>
                   {degree} - {school}
-                  <button>X</button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      this.props.deleteListItem("schoolList", item);
+                    }}
+                  >
+                    X
+                  </button>
                 </li>
               );
             })}

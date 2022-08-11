@@ -76,7 +76,14 @@ class JobForm extends ListForm {
               return (
                 <li key={uniqid()}>
                   {title} - {company}
-                  <button>X</button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      this.props.deleteListItem("jobList", item);
+                    }}
+                  >
+                    X
+                  </button>
                 </li>
               );
             })}

@@ -125,10 +125,12 @@ class App extends Component {
               <JobForm
                 formSubmit={this.appendToListState}
                 history={this.state.jobList}
+                deleteListItem={this.deleteListItem}
               />
               <SchoolForm
                 formSubmit={this.appendToListState}
                 history={this.state.schoolList}
+                deleteListItem={this.deleteListItem}
               />
             </div>
 

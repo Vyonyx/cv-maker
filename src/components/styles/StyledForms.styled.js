@@ -76,6 +76,11 @@ export const StyledHistory = styled.ul`
     gap: 1rem;
 
     li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
         padding: 0.5rem;
         padding-left: 1rem;
         border: none;
@@ -83,6 +88,20 @@ export const StyledHistory = styled.ul`
         border-left: 1px solid rgba(255, 255, 255, 0.75);
         border-radius: 0.5rem;
         color: white;
-        background: ${({ theme }) => theme.gradient.inverseMain}
+        background: ${({ theme }) => theme.gradient.inverseMain};
+
+        button {
+
+            width: 1.5rem;
+            height: 1.5rem;
+            padding: 0;
+            background: white;
+            color: black;
+
+            &:hover {
+                color: white;
+                background: black;
+            }
+        }
     }
 `

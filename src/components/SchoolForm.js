@@ -76,6 +76,7 @@ class SchoolForm extends ListForm {
               return (
                 <li key={uniqid()}>
                   {degree} - {school}
+                  <button>X</button>
                 </li>
               );
             })}

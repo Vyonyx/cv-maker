@@ -10,4 +10,9 @@ export const NavButtons = styled.button`
   border-radius: 1rem;
   border: none;
   background: ${({ theme }) => theme.gradient.inputField};
+
+  &:hover {
+    color: white;
+    background: black;
+  }
 `;

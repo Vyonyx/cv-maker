@@ -22,6 +22,9 @@ import {
 } from "./components/styles/FormSection.styled";
 import { StyledLogo } from "./components/styles/Logo.styled";
 
+import { StyledMainForm } from "./components/styles/StyledForms.styled";
+import { StyledTextArea } from "./components/styles/AboutMe.styled";
+
 const theme = {
   screenSwitch: "768px",
   gradient: {
@@ -90,8 +93,8 @@ function App() {
   };
 
   const changeTextState = (e, cb) => {
-    cb(e.target.value)
-  }
+    cb(e.target.value);
+  };
 
   // editText = (event) => {
   //   const val = window.prompt("What would you like to edit this text to?");
@@ -108,33 +111,39 @@ function App() {
 
         <FormSection viewStatus={viewForms}>
           <div>
-            <PersonalForm>
+            <StyledMainForm>
               <div>
                 <label>First Name:</label>
-                <input onChange={e => changeTextState(e, setFirstName)}></input>
+                <input
+                  onChange={(e) => changeTextState(e, setFirstName)}
+                ></input>
               </div>
               <div>
                 <label>Last Name:</label>
-                <input onChange={e => changeTextState(e, setLastName)}></input>
+                <input
+                  onChange={(e) => changeTextState(e, setLastName)}
+                ></input>
               </div>
               <div>
                 <label>Mobile:</label>
-                <input onChange={e => changeTextState(e, setMobile)}></input>
+                <input onChange={(e) => changeTextState(e, setMobile)}></input>
               </div>
               <div>
                 <label>Email:</label>
-                <input onChange={e => changeTextState(e, setEmail)}></input>
+                <input onChange={(e) => changeTextState(e, setEmail)}></input>
               </div>
-            </PersonalForm>
-            {/* <AboutMe
-                formSubmit={this.setAboutMe}
-                submittedValue={this.state.aboutMe}
-              ></AboutMe> */}
+            </StyledMainForm>
+
+            <StyledMainForm>
+            <StyledTextArea onChange={e => changeTextState(e, setAboutMe)}></StyledTextArea>
+            </StyledMainForm>
+
             {/* <JobForm
                 formSubmit={this.appendToListState}
                 history={this.state.jobList}
                 deleteListItem={this.deleteListItem}
               /> */}
+              
             {/* <SchoolForm
                 formSubmit={this.appendToListState}
                 history={this.state.schoolList}

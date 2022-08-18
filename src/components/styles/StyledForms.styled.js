@@ -44,12 +44,20 @@ export const StyledMainForm = styled.form`
   flex-direction: column;
   gap: 1rem;
 
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
   label {
     color: ${({ theme }) => theme.colors.mainBlue};
   }
 
   input {
-    // background: ${({ theme }) => theme.gradient.inputField};
+    background: ${({ theme }) => theme.gradient.inputField};
+    flex: 1;
     border: none;
     border-top: 1px solid rgba(255, 255, 255, 1);
     border-left: 1px solid rgba(255, 255, 255, 1);

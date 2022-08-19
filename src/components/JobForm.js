@@ -24,7 +24,7 @@ function JobForm({ history, addToHistory }) {
     cbArray.forEach((cb) => cb(''))
   }
 
-  const submitJobToHistory = () => {
+  const submitToHistory = () => {
     addToHistory([...history, details])
     resetState()
   }
@@ -63,7 +63,7 @@ function JobForm({ history, addToHistory }) {
         <label>To:</label>
         <input onChange={(e) => changeTextState(e, setTo)} value={to}></input>
       </div>
-      <NavButtons type="button" onClick={submitJobToHistory}>
+      <NavButtons type="button" onClick={submitToHistory}>
         Add Job
       </NavButtons>
     </StyledMainForm>

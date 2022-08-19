@@ -138,12 +138,7 @@ function App() {
             </StyledMainForm>
 
             <JobForm history={jobList} addToHistory={setJobList} />
-
-            {/* <SchoolForm
-                formSubmit={this.appendToListState}
-                history={this.state.schoolList}
-                deleteListItem={this.deleteListItem}
-              /> */}
+            <SchoolForm history={schoolList} addToHistory={setSchoolList} />
           </div>
 
           {/* <div>

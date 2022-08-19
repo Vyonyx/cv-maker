@@ -1,97 +1,73 @@
-import uniqid from "uniqid";
-import { ListForm } from "./FormMethods";
-import { ListInput } from "./Inputs";
-import { NavButtons } from "./GeneralComponents";
+import React, { useState } from 'react'
+import uniqid from 'uniqid'
+import { ListForm } from './FormMethods'
+import { ListInput } from './Inputs'
+import { NavButtons } from './GeneralComponents'
 
-import { StyledMainForm, StyledHistory } from "./styles/StyledForms.styled";
+import { StyledMainForm, StyledHistory } from './styles/StyledForms.styled'
 
-class SchoolForm extends ListForm {
-  state = {
-    schoolList: [],
-  };
+function SchoolForm({ history, addToHistory }) {
+  const [degree, setDegree] = useState('')
+  const [school, setSchool] = useState('')
+  const [description, setDescription] = useState('')
+  const [from, setFrom] = useState('')
+  const [to, setTo] = useState('')
 
-  template = {
-    degree: "",
-    school: "",
-    city: "",
-    from: "",
-    to: "",
-    description: "",
-  };
+  let details = { degree, school, description, from, to }
+  const cbArray = [setDegree, setSchool, setDescription, setFrom, setTo]
 
-  render() {
-    const { history } = this.props;
-    return (
-      <StyledMainForm
-        onSubmit={(e) => {
-          e.preventDefault();
-          const { degree, school } = this.template;
-          if (degree === "" || school === "") {
-            alert("Please fill in degree and school details.");
-            return;
-          }
-          this.submitListState(e, "schoolList", this.template);
-        }}
-      >
-        <ListInput
-          label="Degree:"
-          field="degree"
-          subState={"template"}
-          updateFunction={this.updateTemplate}
-        />
-        <ListInput
-          label="School:"
-          field="school"
-          subState={"template"}
-          updateFunction={this.updateTemplate}
-        />
-        <ListInput
-          label="City:"
-          field="city"
-          subState={"template"}
-          updateFunction={this.updateTemplate}
-        />
-        <ListInput
-          label="From:"
-          field="from"
-          subState={"template"}
-          updateFunction={this.updateTemplate}
-        />
-        <ListInput
-          label="To:"
-          field="to"
-          subState={"template"}
-          updateFunction={this.updateTemplate}
-        />
-        <ListInput
-          label="Description:"
-          field="description"
-          subState={"template"}
-          updateFunction={this.updateTemplate}
-        />
-        <NavButtons>Add School Details</NavButtons>
-        <StyledHistory>
-          {history.length > 0 &&
-            history.map((item) => {
-              const { degree, school } = item;
-              return (
-                <li key={uniqid()}>
-                  {degree} - {school}
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      this.props.deleteListItem("schoolList", item);
-                    }}
-                  >
-                    X
-                  </button>
-                </li>
-              );
-            })}
-        </StyledHistory>
-      </StyledMainForm>
-    );
+  const changeTextState = (e, cb) => {
+    cb(e.target.value)
   }
+
+  const resetState = () => {
+    cbArray.forEach((cb) => cb(''))
+  }
+
+  const submitToHistory = () => {
+    addToHistory([...history, details])
+    resetState()
+  }
+
+  return (
+    <StyledMainForm>
+      <div>
+        <label>Degree:</label>
+        <input
+          onChange={(e) => changeTextState(e, setDegree)}
+          value={degree}
+        ></input>
+      </div>
+      <div>
+        <label>School:</label>
+        <input
+          onChange={(e) => changeTextState(e, setSchool)}
+          value={school}
+        ></input>
+      </div>
+      <div>
+        <label>Description:</label>
+        <input
+          onChange={(e) => changeTextState(e, setDescription)}
+          value={description}
+        ></input>
+      </div>
+      <div>
+        <label>From:</label>
+        <input
+          onChange={(e) => changeTextState(e, setFrom)}
+          value={from}
+        ></input>
+      </div>
+      <div>
+        <label>To:</label>
+        <input onChange={(e) => changeTextState(e, setTo)} value={to}></input>
+      </div>
+      <NavButtons type="button" onClick={submitToHistory}>
+        Add Degree
+      </NavButtons>
+    </StyledMainForm>
+  )
 }
 
-export default SchoolForm;
+export default SchoolForm

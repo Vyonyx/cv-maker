@@ -108,31 +108,30 @@ function App() {
             <SchoolForm history={schoolList} addToHistory={setSchoolList} />
           </div>
 
-          {/* <div>
-              <PhotoUpload
-                setPhoto={this.setProfilePhoto}
-                photo={this.state.profilePhoto}
-              />
-              <SkillsForm
-                key={uniqid()}
-                formSubmit={this.appendToListState}
-                history={this.state.skillsList}
-                deleteListItem={this.deleteListItem}
-              />
-              <HobbiesForm
-                key={uniqid()}
-                formSubmit={this.appendToListState}
-                history={this.state.hobbiesList}
-                deleteListItem={this.deleteListItem}
-              />
+          <div>
+            <PhotoUpload photo={profilePhoto} setPhoto={setProfilePhoto} />
 
-              <AwardsForm
-                key={uniqid()}
-                formSubmit={this.appendToListState}
-                history={this.state.awardsList}
-                deleteListItem={this.deleteListItem}
-              />
-            </div> */}
+            {/* <SkillsForm
+              key={uniqid()}
+              formSubmit={this.appendToListState}
+              history={this.state.skillsList}
+              deleteListItem={this.deleteListItem}
+            /> */}
+
+            {/* <HobbiesForm
+              key={uniqid()}
+              formSubmit={this.appendToListState}
+              history={this.state.hobbiesList}
+              deleteListItem={this.deleteListItem}
+            /> */}
+
+            {/* <AwardsForm
+              key={uniqid()}
+              formSubmit={this.appendToListState}
+              history={this.state.awardsList}
+              deleteListItem={this.deleteListItem}
+            /> */}
+          </div>
 
           <div>
             <StyledLogo className="logo">CV</StyledLogo>

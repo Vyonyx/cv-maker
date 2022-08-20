@@ -29,6 +29,12 @@ function SchoolForm({ history, addToHistory }) {
     resetState()
   }
 
+  const removeFromHistory = (degree, school) => {
+    const found = history.find((item) => item.school)
+    const updatedHistory = history.filter((item) => item !== found)
+    addToHistory(updatedHistory)
+  }
+
   return (
     <StyledMainForm>
       <div>
@@ -66,6 +72,24 @@ function SchoolForm({ history, addToHistory }) {
       <NavButtons type="button" onClick={submitToHistory}>
         Add Degree
       </NavButtons>
+      {history.length > 0 && (
+        <StyledHistory>
+          {history.map((item) => {
+            const { degree, school } = item
+            return (
+              <li key={uniqid()}>
+                {degree} - {school}
+                <NavButtons
+                  type="button"
+                  onClick={() => removeFromHistory(degree, school)}
+                >
+                  X
+                </NavButtons>
+              </li>
+            )
+          })}
+        </StyledHistory>
+      )}
     </StyledMainForm>
   )
 }

@@ -51,33 +51,6 @@ function App() {
   const [viewForms, setViewForms] = useState(true)
   const [viewPDF, setViewPDF] = useState(false)
 
-  // setMainState = (stateInfo) => {
-  //   const keys = Object.keys(stateInfo);
-  //   keys.forEach((key) => {
-  //     this.setState({
-  //       [key]: stateInfo[key],
-  //     });
-  //   });
-  // };
-
-  // appendToListState = (listID, item) => {
-  //   this.setState({
-  //     [listID]: [...this.state[listID], item],
-  //   });
-  // };
-
-  // setAboutMe = (description) => {
-  //   this.setState({
-  //     aboutMe: description,
-  //   });
-  // };
-
-  // deleteListItem = (listID, value) => {
-  //   this.setState({
-  //     [listID]: [...this.state[listID].filter((item) => item !== value)],
-  //   });
-  // };
-
   // setProfilePhoto = (url) => {
   //   this.setState({
   //     profilePhoto: url,
@@ -92,12 +65,6 @@ function App() {
   const changeTextState = (e, cb) => {
     cb(e.target.value)
   }
-
-  // editText = (event) => {
-  //   const val = window.prompt("What would you like to edit this text to?");
-  //   const text = event.target;
-  //   text.innerText = val;
-  // };
 
   // componentRef = null;
 

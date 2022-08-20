@@ -30,7 +30,7 @@ function SchoolForm({ history, addToHistory }) {
   }
 
   const removeFromHistory = (degree, school) => {
-    const found = history.find((item) => item.school)
+    const found = history.find((item) => item.degree && item.school)
     const updatedHistory = history.filter((item) => item !== found)
     addToHistory(updatedHistory)
   }

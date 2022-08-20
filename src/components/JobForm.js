@@ -29,6 +29,12 @@ function JobForm({ history, addToHistory }) {
     resetState()
   }
 
+  const removeFromHistory = (title, company) => {
+    const found = history.find((item) => item.title && item.company)
+    const updatedHistory = history.filter((item) => item !== found)
+    addToHistory(updatedHistory)
+  }
+
   return (
     <StyledMainForm>
       <div>
@@ -66,6 +72,24 @@ function JobForm({ history, addToHistory }) {
       <NavButtons type="button" onClick={submitToHistory}>
         Add Job
       </NavButtons>
+      {history.length > 0 && (
+        <StyledHistory>
+          {history.map((item) => {
+            const { title, company } = item
+            return (
+              <li key={uniqid()}>
+                {title} - {company}
+                <NavButtons
+                  type="button"
+                  onClick={(e) => removeFromHistory(title, company)}
+                >
+                  X
+                </NavButtons>
+              </li>
+            )
+          })}
+        </StyledHistory>
+      )}
     </StyledMainForm>
   )
 }

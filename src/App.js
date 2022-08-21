@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
-import { ThemeProvider } from 'styled-components'
 import { useReactToPrint } from 'react-to-print'
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles from './components/styles/Global'
 
 import PhotoUpload from './components/PhotoUpload'
 import JobForm from './components/JobForm'
@@ -8,16 +9,13 @@ import SchoolForm from './components/SchoolForm'
 import SkillsForm from './components/SkillsForm'
 import HobbiesForm from './components/HobbiesForm'
 import AwardsForm from './components/AwardsForm'
+import PDFPage from './components/PDFPage'
 
-import PDFPage from './components/DummyPage'
-import { NavButtons } from './components/GeneralComponents'
-
-import GlobalStyles from './components/styles/Global'
 import { FormSection, PDFSection } from './components/styles/FormSection.styled'
 import { StyledLogo } from './components/styles/Logo.styled'
-
 import { StyledMainForm } from './components/styles/StyledForms.styled'
 import { StyledTextArea } from './components/styles/AboutMe.styled'
+import { NavButtons } from './components/GeneralComponents'
 
 const theme = {
   screenSwitch: '768px',

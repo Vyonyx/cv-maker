@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import uniqid from 'uniqid'
-import { ListForm } from './FormMethods'
 import { NavButtons } from './GeneralComponents'
-import { ListInput } from './Inputs'
 
 import { StyledMainForm, StyledHistory } from './styles/StyledForms.styled'
 

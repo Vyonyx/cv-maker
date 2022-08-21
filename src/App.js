@@ -12,7 +12,7 @@ import SkillsForm from './components/SkillsForm'
 import HobbiesForm from './components/HobbiesForm'
 import AwardsForm from './components/AwardsForm'
 
-import DummyPage from './components/DummyPage'
+import PDFPage from './components/DummyPage'
 import { NavButtons } from './components/GeneralComponents'
 
 import GlobalStyles from './components/styles/Global'
@@ -122,11 +122,20 @@ function App() {
         </FormSection>
 
         <PDFSection viewStatus={viewPDF}>
-          {/* <DummyPage
-            ref={(el) => (this.componentRef = el)}
-            details={this.state}
-          ></DummyPage>
-          <StyledLogo className="logo">PDF</StyledLogo> */}
+          <PDFPage
+            firstName={firstName}
+            lastName={lastName}
+            mobile={mobile}
+            email={email}
+            profilePhoto={profilePhoto}
+            aboutMe={aboutMe}
+            skillsList={skillsList}
+            awardsList={awardsList}
+            hobbiesList={hobbiesList}
+            jobList={jobList}
+            schoolList={schoolList}
+          />
+          <StyledLogo className="logo">PDF</StyledLogo>
           <NavButtons onClick={toggleViews}>Edit CV</NavButtons>
           {/* <ReactToPrint
             trigger={() => {

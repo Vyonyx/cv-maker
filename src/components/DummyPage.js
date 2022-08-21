@@ -1,119 +1,125 @@
-import uniqid from "uniqid";
-import React, { Component } from "react";
-import styled from "styled-components";
+import uniqid from 'uniqid'
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
-export class DummyPage extends Component {
-  render() {
-    const { details } = this.props;
-    return (
-      <StyledPage>
-        <Personal>
-          <section>
-            <div>
-              <h1>{details.firstName}</h1>
-              <h1>{details.lastName}</h1>
-            </div>
-            <h2>{details.currentTitle}</h2>
-          </section>
-          <section>
-            {details.mobile !== "" && <h4>Mobile: {details.mobile}</h4>}
-            {details.email !== "" && <h4>Email: {details.email}</h4>}
-          </section>
-        </Personal>
+function PDFPage({
+  firstName,
+  lastName,
+  mobile,
+  email,
+  profilePhoto,
+  aboutMe,
+  skillsList,
+  awardsList,
+  hobbiesList,
+  jobList,
+  schoolList,
+}) {
+  return (
+    <StyledPage>
+      <Personal>
+        <section>
+          <div>
+            <h1>{firstName}</h1>
+            <h1>{lastName}</h1>
+          </div>
+        </section>
+        <section>
+          {mobile !== '' && <h4>Mobile: {mobile}</h4>}
+          {email !== '' && <h4>Email: {email}</h4>}
+        </section>
+      </Personal>
 
-        <Secondary>
-          {details.profilePhoto !== null && (
-            <img src={details.profilePhoto} alt=""></img>
-          )}
+      <Secondary>
+        {profilePhoto !== null && <img src={profilePhoto} alt=""></img>}
 
-          {details.aboutMe !== "" && (
-            <div>
-              <h2>About Me:</h2>
-              <p>{details.aboutMe}</p>
-            </div>
-          )}
+        {aboutMe !== '' && (
+          <div>
+            <h2>About Me:</h2>
+            <p>{aboutMe}</p>
+          </div>
+        )}
 
-          {details.skillsList.length > 0 && (
-            <div>
-              <h2>Skills:</h2>
-              <ul>
-                {details.skillsList.map((item) => (
-                  <li>{Object.values(item)}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+        {skillsList.length > 0 && (
+          <div>
+            <h2>Skills:</h2>
+            <ul>
+              {skillsList.map((item) => (
+                <li key={uniqid()}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-          {details.awardsList.length > 0 && (
-            <div>
-              <h2>Awards:</h2>
-              <ul>
-                {details.awardsList.map((item) => (
-                  <li>{Object.values(item)}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+        {awardsList.length > 0 && (
+          <div>
+            <h2>Awards:</h2>
+            <ul>
+              {awardsList.map((item) => (
+                <li key={uniqid()}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-          {details.hobbiesList.length > 0 && (
-            <div>
-              <h2>Hobbies:</h2>
-              <ul>
-                {details.hobbiesList.map((item) => (
-                  <li>{Object.values(item)}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </Secondary>
+        {hobbiesList.length > 0 && (
+          <div>
+            <h2>Hobbies:</h2>
+            <ul>
+              {hobbiesList.map((item) => (
+                <li key={uniqid()}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </Secondary>
 
-        <Primary>
-          <h1>Work Experience:</h1>
-          {details.jobList.map((item) => {
-            return (
-              <JobDetails key={uniqid()}>
-                <h3>{item.company}</h3>
-                <h3>{item.title}</h3>
-                <div>
-                  <h4>{item.city}</h4>
-                  {item.from !== "" && item.to !== "" && (
-                    <h4>
-                      {item.from} - {item.to}
-                    </h4>
-                  )}
-                </div>
-                <p>{item.description}</p>
-              </JobDetails>
-            );
-          })}
+      <Primary>
+        <h1>Work Experience:</h1>
+        {jobList.map((item) => {
+          return (
+            <JobDetails key={uniqid()}>
+              <h3>{item.company}</h3>
+              <h3>{item.title}</h3>
+              <div>
+                <h4>{item.city}</h4>
+                {item.from !== '' && item.to !== '' && (
+                  <h4>
+                    {item.from} - {item.to}
+                  </h4>
+                )}
+              </div>
+              <p>{item.description}</p>
+            </JobDetails>
+          )
+        })}
 
-          <h1>Education:</h1>
-          {details.schoolList.map((item) => {
-            return (
-              <JobDetails key={uniqid()}>
-                <h3>{item.degree}</h3>
-                <h3>{item.school}</h3>
-                <div>
-                  <h4>{item.city}</h4>
-                  {item.from !== "" && item.to !== "" && (
-                    <h4>
-                      {item.from} - {item.to}
-                    </h4>
-                  )}
-                </div>
-                <p>{item.description}</p>
-              </JobDetails>
-            );
-          })}
+        <h1>Education:</h1>
+        {schoolList.map((item) => {
+          return (
+            <JobDetails key={uniqid()}>
+              <h3>{item.degree}</h3>
+              <h3>{item.school}</h3>
+              <div>
+                <h4>{item.city}</h4>
+                {item.from !== '' && item.to !== '' && (
+                  <h4>
+                    {item.from} - {item.to}
+                  </h4>
+                )}
+              </div>
+              <p>{item.description}</p>
+            </JobDetails>
+          )
+        })}
 
-          <Reference>References will be provided on request.</Reference>
-        </Primary>
-      </StyledPage>
-    );
-  }
+        <Reference>References will be provided on request.</Reference>
+      </Primary>
+    </StyledPage>
+  )
 }
 
-export default DummyPage;
+export default PDFPage
 
 const StyledPage = styled.div`
   width: 210mm;
@@ -123,10 +129,10 @@ const StyledPage = styled.div`
 
   display: grid;
   grid:
-    "secondary personal" 50mm
-    "secondary primary" 1fr /
+    'secondary personal' 50mm
+    'secondary primary' 1fr /
     75mm 1fr;
-`;
+`
 
 const Personal = styled.div`
     grid-area: personal;
@@ -155,7 +161,7 @@ const Personal = styled.div`
         grid-auto-rows; auto;
         gap: 0.5rem;
     }
-`;
+`
 
 const Secondary = styled.div`
   grid-area: secondary;
@@ -193,7 +199,7 @@ const Secondary = styled.div`
       margin: 0.5rem 0;
     }
   }
-`;
+`
 
 const Primary = styled.div`
   position: relative;
@@ -208,13 +214,13 @@ const Primary = styled.div`
   > div {
     margin-bottom: 3rem;
   }
-`;
+`
 
 const JobDetails = styled.div`
   display: grid;
   grid:
-    "company title" 1fr
-    "citydates description" 1fr /
+    'company title' 1fr
+    'citydates description' 1fr /
     1fr 2fr;
   gap: 0.5rem;
   align-items: end;
@@ -229,7 +235,7 @@ const JobDetails = styled.div`
   p {
     font-size: 8pt;
   }
-`;
+`
 
 const Reference = styled.h3`
   position: absolute;
@@ -240,4 +246,4 @@ const Reference = styled.h3`
   font-size: 0.75rem;
   font-style: italic;
   color: grey;
-`;
+`

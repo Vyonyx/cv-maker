@@ -110,27 +110,9 @@ function App() {
 
           <div>
             <PhotoUpload photo={profilePhoto} setPhoto={setProfilePhoto} />
-
-            {/* <SkillsForm
-              key={uniqid()}
-              formSubmit={this.appendToListState}
-              history={this.state.skillsList}
-              deleteListItem={this.deleteListItem}
-            /> */}
-
-            {/* <HobbiesForm
-              key={uniqid()}
-              formSubmit={this.appendToListState}
-              history={this.state.hobbiesList}
-              deleteListItem={this.deleteListItem}
-            /> */}
-
-            {/* <AwardsForm
-              key={uniqid()}
-              formSubmit={this.appendToListState}
-              history={this.state.awardsList}
-              deleteListItem={this.deleteListItem}
-            /> */}
+            <SkillsForm history={skillsList} addToHistory={setSkillsList} />
+            <HobbiesForm history={hobbiesList} addToHistory={setHobbiesList} />
+            <AwardsForm history={awardsList} addToHistory={setAwardsList} />
           </div>
 
           <div>

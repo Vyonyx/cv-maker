@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const StyledSecondaryForm = styled.form`
+export const StyledSecondaryForm = styled.div`
   color: ${({ theme }) => theme.colors.mainBlue};
   background: ${({ theme }) => theme.colors.formBG};
   padding: 1rem;
@@ -32,7 +32,7 @@ export const StyledSecondaryForm = styled.form`
     border: none;
     background: ${({ theme }) => theme.gradient.inputField};
   }
-`;
+`
 
 export const StyledMainForm = styled.form`
   color: ${({ theme }) => theme.colors.mainBlue};
@@ -66,7 +66,7 @@ export const StyledMainForm = styled.form`
     font-size: 1rem;
     padding-left: 1rem;
   }
-`;
+`
 
 export const StyledHistory = styled.ul`
   display: flex;
@@ -101,4 +101,4 @@ export const StyledHistory = styled.ul`
       }
     }
   }
-`;
+`

@@ -1,13 +1,10 @@
-import React, { useState, Component } from 'react'
-import uniqid from 'uniqid'
+import React, { useState, useRef } from 'react'
 import { ThemeProvider } from 'styled-components'
-import ReactToPrint from 'react-to-print'
+import { useReactToPrint } from 'react-to-print'
 
 import PhotoUpload from './components/PhotoUpload'
-import PersonalForm from './components/PersonalForm'
 import JobForm from './components/JobForm'
 import SchoolForm from './components/SchoolForm'
-import AboutMe from './components/AboutMe'
 import SkillsForm from './components/SkillsForm'
 import HobbiesForm from './components/HobbiesForm'
 import AwardsForm from './components/AwardsForm'
@@ -51,12 +48,6 @@ function App() {
   const [viewForms, setViewForms] = useState(true)
   const [viewPDF, setViewPDF] = useState(false)
 
-  // setProfilePhoto = (url) => {
-  //   this.setState({
-  //     profilePhoto: url,
-  //   });
-  // };
-
   const toggleViews = () => {
     setViewForms(viewForms ? false : true)
     setViewPDF(viewPDF ? false : true)
@@ -66,7 +57,10 @@ function App() {
     cb(e.target.value)
   }
 
-  // componentRef = null;
+  const componentRef = useRef()
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  })
 
   return (
     <ThemeProvider theme={theme}>
@@ -123,6 +117,7 @@ function App() {
 
         <PDFSection viewStatus={viewPDF}>
           <PDFPage
+            ref={componentRef}
             firstName={firstName}
             lastName={lastName}
             mobile={mobile}
@@ -137,12 +132,7 @@ function App() {
           />
           <StyledLogo className="logo">PDF</StyledLogo>
           <NavButtons onClick={toggleViews}>Edit CV</NavButtons>
-          {/* <ReactToPrint
-            trigger={() => {
-              return <NavButtons>Print PDF</NavButtons>;
-            }}
-            content={() => this.componentRef}
-          /> */}
+          <NavButtons onClick={handlePrint}>Print PDF</NavButtons>
         </PDFSection>
       </>
     </ThemeProvider>
